@@ -1,3 +1,4 @@
 downloads/*.zip
 tools/logs/
 tools/deploy.json
+__pycache__/

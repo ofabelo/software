@@ -18,7 +18,7 @@ window.SOFTWARE = {
     "latest": {
       "version": "1.0.65",
       "date": "2026-09-29",
-      "file": "downloads/PANDA_v1.0.65_Windows_x64.zip",
+      "file": "https://code.ill.fr/api/v4/projects/1699/packages/generic/panda/1.0.65/PANDA_v1.0.65_Windows_x64.zip",
       "size": "177 MB",
       "manual": "downloads/PANDA_User_Manual_v1.0.65.pdf"
     },
@@ -160,7 +160,7 @@ window.SOFTWARE = {
     "latest": {
       "version": "0.4.0",
       "date": "2026-09-29",
-      "file": "downloads/Edit_PyCR_v0.4.0_Windows_x64.zip",
+      "file": "https://code.ill.fr/api/v4/projects/1699/packages/generic/editpycr/0.4.0/Edit_PyCR_v0.4.0_Windows_x64.zip",
       "size": "76 MB",
       "manual": "downloads/Edit_PyCR_User_Manual_v0.4.0.pdf"
     },

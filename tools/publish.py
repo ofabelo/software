@@ -8,15 +8,18 @@ For each program:
   5. copies the user manual into downloads/
   6. writes the release notes from the commits since the last release
      (Claude, see release_notes.py) and updates js/releases.js + index.html
-  7. (optional) copies the web folder to the server
+  7. (optional) uploads the zip to the GitLab package registry of
+     code.ill.fr/fabelo/software and links the page to it (--upload)
+  8. (optional) commits and pushes the site, which redeploys GitLab Pages (--push)
+  9. (optional) copies the web folder to a server folder (--deploy)
 
 USUAL COMMAND - update everything to the latest code
 -----------------------------------------------------
 Bump the version in the program(s) you want to release and push, then:
 
-    cd C:\\ILL_Git\\web
-    python tools/publish.py all --pull --dry-run     # 1. check what will happen
-    python tools/publish.py all --pull               # 2. do it
+    cd C:\\ILL_Git\\software
+    python tools/publish.py all --pull --upload --push --dry-run   # 1. check
+    python tools/publish.py all --pull --upload --push             # 2. do it
 
 It pulls both repositories, builds with PyInstaller every program whose
 version changed (from the .spec at the root of C:\\ILL_Git\\Panda and
@@ -27,9 +30,11 @@ is inside the zip: every commit since the previous zip goes into the new
 version. A program whose version did not change is not built (the script
 says whether it has changes pending; use --rebuild to put them into the
 current version).
-Add --deploy to also copy the site to the server.
+--upload puts the zip in the package registry (the zips are too big for git
+and for Pages) and --push commits and pushes the page, so the public site
+is updated a minute later.
 
-Other uses (from the web/ folder):
+Other uses (from this folder):
 
     python tools/publish.py panda              # only PANDA
     python tools/publish.py editpycr           # only Edit_PyCR
@@ -44,6 +49,11 @@ Options:
                      any new commits are added to that version
     --no-ai          don't call Claude; the release gets the commit subjects
                      as notes, to be edited by hand in js/releases.js
+    --upload         upload the zip to the GitLab package registry and make the
+                     download button point there. On a program whose version did
+                     not change, uploads the zip already on the page if it is
+                     still a local file.
+    --push           git commit + push the site (GitLab Pages redeploys it)
     --deploy [DIR]   copy the site to DIR (default: "deploy_dir" in
                      tools/deploy.json, or the WEB_DEPLOY_DIR variable)
     --dry-run        show what would happen, change nothing
@@ -51,6 +61,9 @@ Options:
 The version is bumped in the program itself (metadata.py / app_version.py)
 and committed before running this; the release notes cover the commits
 since the previous release up to HEAD.
+
+--upload needs a GitLab personal access token with the "api" scope in the
+GITLAB_TOKEN environment variable (setx GITLAB_TOKEN "glpat-...").
 """
 
 import argparse
@@ -62,6 +75,8 @@ import shutil
 import subprocess
 import sys
 import time
+import urllib.error
+import urllib.request
 import zipfile
 from pathlib import Path
 
@@ -90,6 +105,10 @@ BUILD = {
                     "docs/manual/main.pdf"],
     },
 }
+
+# GitLab project that hosts the site and, in its package registry, the zips.
+GITLAB = "https://code.ill.fr"
+PROJECT_ID = 1699  # fabelo/software
 
 # Files of the site that go to the server (tools/, logs and README stay here).
 SITE = ["index.html", "css", "js", "img", "downloads"]
@@ -177,6 +196,77 @@ def prune(name, current, dry):
                     old.unlink()
 
 
+def gitlab_token():
+    """GITLAB_TOKEN from the environment, or from the user variables in the
+    registry when it was set with setx after this terminal was opened."""
+    token = os.environ.get("GITLAB_TOKEN")
+    if not token and sys.platform == "win32":
+        import winreg
+        try:
+            with winreg.OpenKey(winreg.HKEY_CURRENT_USER, "Environment") as k:
+                token = winreg.QueryValueEx(k, "GITLAB_TOKEN")[0]
+        except OSError:
+            pass
+    if not token:
+        sys.exit('--upload needs a GitLab token with the "api" scope: setx GITLAB_TOKEN "glpat-..."')
+    return token
+
+
+def registry_url(key, version, filename):
+    """Public download address of a file in the project's generic package registry."""
+    return f"{GITLAB}/api/v4/projects/{PROJECT_ID}/packages/generic/{key}/{version}/{filename}"
+
+
+def upload(key, version, rel, dry):
+    """Upload downloads/<zip> to the package registry; returns its public URL."""
+    src = WEB / rel
+    url = registry_url(key, version, src.name)
+    print(f"   {rel} -> {url}")
+    if dry:
+        return url
+    if not src.exists():
+        sys.exit(f"{src} not found - nothing to upload.")
+    size = src.stat().st_size
+    t0 = time.time()
+    with src.open("rb") as f:
+        req = urllib.request.Request(url, data=f, method="PUT", headers={
+            "PRIVATE-TOKEN": gitlab_token(), "Content-Length": str(size),
+            "Content-Type": "application/octet-stream"})
+        try:
+            with urllib.request.urlopen(req, timeout=1800) as r:
+                r.read()
+        except urllib.error.HTTPError as e:
+            sys.exit(f"Upload failed: HTTP {e.code} {e.read().decode(errors='replace')[:300]}")
+    print(f"   uploaded {size / 2**20:.0f} MB in {time.time() - t0:.0f} s")
+    # the page must not point at a file that is not really there
+    try:
+        with urllib.request.urlopen(urllib.request.Request(url, method="HEAD"), timeout=60):
+            pass
+    except urllib.error.HTTPError as e:
+        sys.exit(f"The upload finished but {url} answers HTTP {e.code}.")
+    return url
+
+
+def push(published, dry):
+    """Commit and push the site; GitLab Pages redeploys it."""
+    step("Committing and pushing the site")
+    if not (WEB / ".git").exists():
+        sys.exit(f"{WEB} is not a git repository.")
+    changed = rn.git(WEB, "status", "--porcelain").strip()
+    if not changed:
+        print("   nothing to commit")
+        return
+    print("   " + "\n   ".join(changed.splitlines()))
+    msg = "Publish " + ", ".join(published) if published else "Update the site"
+    print(f"   commit: {msg}")
+    if dry:
+        return
+    rn.git(WEB, "add", "-A")
+    rn.git(WEB, "commit", "-m", msg)
+    rn.git(WEB, "push")
+    print("   pushed - the site is redeployed in about a minute")
+
+
 def deploy(target, dry):
     target = Path(target)
     step(f"Copying the site to {target}")
@@ -248,6 +338,10 @@ def publish(key, data, a):
         sys.exit(f"--rebuild republishes the current version, but the repository is at "
                  f"{version} and the page at {last}. Drop --rebuild for a new release.")
     if version == last and not a.rebuild:
+        if a.upload and not sw["latest"]["file"].startswith("http"):
+            step(f"{name}: upload of the zip on the page")
+            sw["latest"]["file"] = upload(key, last, sw["latest"]["file"], a.dry_run)
+            return f"{name} {last} (zip moved to the package registry)"
         if not commits:
             print(f"   {version}: the zip on the page is up to date - nothing to do.")
         else:
@@ -283,13 +377,18 @@ def publish(key, data, a):
     file = package(repo, cfg, name, version, a.dry_run, will_build=not a.skip_build)
     manual = copy_manual(repo, cfg, name, version, a.dry_run) or sw["latest"]["manual"]
     prune(name, [file, manual], a.dry_run)
+    size = rn.file_size(WEB / file)
+    if a.upload:
+        step(f"{name}: upload to the package registry")
+        file = upload(key, version, file, a.dry_run)
 
     if a.rebuild:
         # same version, newer zip: its notes grow with what the new build adds
         rn.add_release(sw, repo, version, notes + current["notes"], file, manual)
     else:
         rn.add_release(sw, repo, version, notes, file, manual)
-    return True
+    sw["latest"]["size"] = size  # add_release can't measure a URL
+    return f"{name} {version}"
 
 
 def main():
@@ -299,6 +398,8 @@ def main():
     ap.add_argument("--skip-build", action="store_true")
     ap.add_argument("--rebuild", action="store_true")
     ap.add_argument("--no-ai", action="store_true")
+    ap.add_argument("--upload", action="store_true")
+    ap.add_argument("--push", action="store_true")
     ap.add_argument("--deploy", nargs="?", const=True)
     ap.add_argument("--dry-run", action="store_true")
     a = ap.parse_args()
@@ -309,7 +410,9 @@ def main():
         if k not in BUILD or k not in data:
             sys.exit(f"Unknown product '{k}'. Choose from: {', '.join(BUILD)} or all")
 
-    published = [k for k in keys if publish(k, data, a)]
+    if a.upload and not a.dry_run:
+        gitlab_token()  # fail now rather than after a long build
+    published = [p for p in (publish(k, data, a) for k in keys) if p]
 
     step("Web page")
     if not published:
@@ -320,11 +423,13 @@ def main():
         rn.save(header, data)
         print("   js/releases.js and index.html updated")
 
+    if a.push:
+        push(published, a.dry_run)
     if a.deploy:
         deploy(deploy_target(a.deploy), a.dry_run)
-    else:
-        print("\nDone. Open index.html to check, then publish with --deploy "
-              "(or copy index.html, css/, js/, img/ and downloads/ to the server).")
+    if not (a.push or a.deploy):
+        print("\nDone. Open index.html to check, then publish with --push "
+              "(git push to code.ill.fr) or --deploy DIR.")
 
 
 if __name__ == "__main__":
