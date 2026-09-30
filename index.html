@@ -3,11 +3,11 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Oscar Fabelo · Institut Laue-Langevin</title>
-  <meta name="description" content="Oscar Fabelo – instrument scientist at the Institut Laue-Langevin (ILL). Single-crystal neutron diffraction, magnetic structures, molecular magnets. Downloads of PANDA and Edit_PyCR.">
-  <meta name="author" content="Oscar Fabelo">
+  <title>PANDA &amp; Edit_PyCR · ILL diffraction software</title>
+  <meta name="description" content="Free desktop tools for neutron diffraction users at the Institut Laue-Langevin: PANDA for browsing, reducing and exporting powder data, and Edit_PyCR for building and running FullProf refinements.">
+  <meta name="author" content="Oscar Fabelo, Institut Laue-Langevin">
   <link rel="icon" type="image/png" href="img/panda-icon.png">
-  <link rel="stylesheet" href="css/style.css?v=202609290012">
+  <link rel="stylesheet" href="css/style.css?v=202609301900">
 </head>
 <body>
 
@@ -23,7 +23,7 @@
         <span>›</span>
         <a href="https://www.ill.eu/for-ill-users/scientific-groups/diffraction/instruments" target="_blank" rel="noopener">Diffraction group</a>
         <span>›</span>
-        <span aria-current="page">Oscar Fabelo</span>
+        <span aria-current="page">Software</span>
       </nav>
     </div>
   </div>
@@ -32,19 +32,21 @@
   <header class="nav" id="top">
     <div class="wrap nav__inner">
       <a href="#top" class="nav__name">
-        <span class="monogram" aria-hidden="true">OF</span>
-        <span>Oscar Fabelo</span>
+        <span class="nav__logos" aria-hidden="true">
+          <img src="img/panda-icon.png" alt="" width="30" height="30">
+          <img src="img/edit-pycr-icon.png" alt="" width="30" height="30">
+        </span>
+        <span>Diffraction Software <small>ILL</small></span>
       </a>
       <button class="nav__toggle" aria-expanded="false" aria-controls="nav-links" aria-label="Open menu">
         <span></span><span></span><span></span>
       </button>
       <ul class="nav__links" id="nav-links">
-        <li><a href="#software">Software</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#research">Research</a></li>
-        <li><a href="#instruments">Instruments</a></li>
-        <li><a href="#publications">Publications</a></li>
-        <li><a href="#contact">Contact</a></li>
+        <li><a href="#panda">PANDA</a></li>
+        <li><a href="#edit-pycr">Edit_PyCR</a></li>
+        <li><a href="#download">Download</a></li>
+        <li><a href="#news">What’s new</a></li>
+        <li><a href="#support">Support</a></li>
       </ul>
     </div>
   </header>
@@ -68,137 +70,493 @@
       </svg>
       <div class="wrap hero__inner">
         <div class="hero__text">
-          <a class="announce" href="#news" id="announce">
+          <a class="announce" href="#news">
             <span class="announce__tag">Latest</span>
-            <span id="announce-text">PANDA 1.0.64 · Edit_PyCR 0.3.0</span>
+            <span id="announce-text">PANDA 1.0.65 · Edit_PyCR 0.4.0</span>
             <span aria-hidden="true">→</span>
           </a>
-          <p class="eyebrow">Instrument scientist · Diffraction Group</p>
-          <h1>Oscar Fabelo</h1>
+          <p class="eyebrow">Institut Laue-Langevin · Diffraction Group</p>
+          <h1>From the detector to the refined structure</h1>
           <p class="lead">
-            I use neutrons to see where atoms sit and where their magnetic moments point.
-            At the <a href="https://www.ill.eu/" target="_blank" rel="noopener">Institut Laue-Langevin</a> in
-            Grenoble I am responsible for the hot-neutron single-crystal diffractometer
-            <strong>D9</strong>, where I study how structure and magnetism shape the properties of materials.
+            Two free desktop tools for neutron diffraction users.
+            <strong>PANDA</strong> opens the NeXus files straight from the instrument and turns
+            them into clean, normalised patterns. <strong>Edit_PyCR</strong> builds and runs the
+            FullProf refinement that comes next.
           </p>
           <div class="hero__cta">
-            <a class="btn btn--primary" href="#software">Software downloads</a>
-            <a class="btn btn--ghost" href="#research">Research</a>
+            <a class="btn btn--primary" href="#download">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11m0 0-4-4m4 4 4-4M5 20h14"/></svg>
+              Download for Windows
+            </a>
+            <a class="btn btn--ghost" href="#workflow">How they fit together</a>
           </div>
-          <ul class="profiles" aria-label="Research profiles">
-            <li><a href="https://orcid.org/0000-0001-6452-8830" target="_blank" rel="noopener">ORCID</a></li>
-            <li><a href="https://scholar.google.com/citations?user=tkkEhJ8AAAAJ" target="_blank" rel="noopener">Google Scholar</a></li>
-            <li><a href="https://www.researchgate.net/scientific-contributions/Oscar-Fabelo-39104805" target="_blank" rel="noopener">ResearchGate</a></li>
-            <li><a href="https://www.scopus.com/authid/detail.uri?authorId=8636377900" target="_blank" rel="noopener">Scopus</a></li>
+          <ul class="hero__facts">
+            <li>Windows 64-bit</li>
+            <li>No installation, no admin rights</li>
+            <li>User manual included</li>
           </ul>
         </div>
-        <aside class="hero__card" aria-label="Key figures">
-          <dl class="stats">
-            <div><dt>Publications</dt><dd id="stat-pubs">170+</dd></div>
-            <div><dt>Citations</dt><dd>4,800+</dd></div>
-            <div><dt>h-index</dt><dd>39</dd></div>
-            <div><dt>At the ILL since</dt><dd>2014</dd></div>
-          </dl>
-          <p class="stats__note">Citation metrics: Google Scholar, September 2026.</p>
-        </aside>
+        <div class="hero__shots" aria-hidden="true">
+          <img class="hero__shot hero__shot--back" src="img/edit-pycr-main.png" alt="" width="1770" height="1080">
+          <img class="hero__shot hero__shot--front" src="img/shots/panda-heatmap-slice.jpg" alt="" width="974" height="662">
+        </div>
       </div>
     </section>
 
-    <!-- Software -->
-    <section class="section section--tint" id="software">
+    <!-- Workflow -->
+    <section class="section section--flow" id="workflow">
+      <div class="wrap">
+        <p class="kicker">Workflow</p>
+        <h2>One path from beamtime to results</h2>
+        <p class="section__intro">
+          The two programs cover consecutive steps of a powder diffraction experiment. PANDA's
+          exported <code>.xys</code> files and <code>buffer.buf</code> list feed Edit_PyCR directly.
+          The pyPRF viewer inside PANDA shows the FullProf fits.
+        </p>
+        <ol class="flow">
+          <li class="flow__step">
+            <span class="flow__n">1</span>
+            <h3>Measure</h3>
+            <p>NeXus files from D20, D1B, D2B, D16 or XtremeD, read while the experiment is still running.</p>
+          </li>
+          <li class="flow__step flow__step--panda">
+            <span class="flow__n">2</span>
+            <h3>Reduce &amp; inspect <small>PANDA</small></h3>
+            <p>Normalise, combine, subtract and follow the patterns in temperature. Then export them for refinement.</p>
+          </li>
+          <li class="flow__step flow__step--pycr">
+            <span class="flow__n">3</span>
+            <h3>Refine <small>Edit_PyCR</small></h3>
+            <p>Build the <code>.pcr</code> from a CIF, set up the model, run FullProf and compare the runs.</p>
+          </li>
+          <li class="flow__step flow__step--panda">
+            <span class="flow__n">4</span>
+            <h3>Present <small>pyPRF</small></h3>
+            <p>Turn Rietveld plots and refinement reports into publication-quality figures.</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ===================================================== PANDA -->
+    <section class="section section--tint" id="panda">
+      <div class="wrap">
+        <header class="prodhead">
+          <img src="img/panda-icon.png" alt="" class="prodhead__logo" width="72" height="72">
+          <div>
+            <p class="kicker">Powder Analysis for Neutron Diffraction Applications</p>
+            <h2>PANDA <span class="pill" data-product="panda"><span data-field="version">v1.0.65</span></span></h2>
+          </div>
+        </header>
+        <div class="intro-grid">
+          <div>
+            <p class="lede">
+              A data browser and reduction tool for neutron powder diffraction. Point it at the
+              experiment's data folder and every numor appears with its temperature and comments.
+              Select a few to overlay them, or a whole ramp to see it as a temperature map. From
+              there you can combine, subtract, correct and export patterns ready for Rietveld refinement.
+            </p>
+            <p>
+              It is built for use during the experiment as well as after it. <kbd>Ctrl</kbd>+<kbd>R</kbd> picks
+              up new numors as the instrument writes them, so the data can be followed live
+              from the cabin or from home.
+            </p>
+          </div>
+          <dl class="facts">
+            <div><dt>Instruments</dt><dd>D20 · D1B · D2B · D16 · XtremeD</dd></div>
+            <div><dt>Reads</dt><dd>NeXus, XYS / DAT / XY, XRDML, GSAS TOF</dd></div>
+            <div><dt>Writes</dt><dd><code>.xys</code> for FullProf, JANA, GSAS · PNG / PDF / SVG</dd></div>
+            <div><dt>Licence</dt><dd>GPL-3.0</dd></div>
+          </dl>
+        </div>
+
+        <div class="features-grid">
+          <article class="feature">
+            <div class="feature__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 17l5-6 4 3 5-8 4 5"/><path d="M3 21h18"/></svg></div>
+            <h3>See a whole ramp at once</h3>
+            <p>1D overlays for a few patterns, and a 2D map of intensity against 2θ or Q and temperature for many. A slice panel shows the pattern under the cursor. 3D surface and waterfall views are also available.</p>
+          </article>
+          <article class="feature">
+            <div class="feature__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5v14"/><circle cx="12" cy="12" r="9"/></svg></div>
+            <h3>Combine and subtract</h3>
+            <p>Sum or average equivalent scans. Subtract a paramagnetic reference from every pattern of a ramp in one step. Statistical uncertainties are propagated through every operation.</p>
+          </article>
+          <article class="feature">
+            <div class="feature__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 18c3 0 4-3 6-3s3 2 6 2 4-4 6-4"/><path d="M8 11V4M14 13V7M19 10V3"/></svg></div>
+            <h3>Background subtraction</h3>
+            <p>Seven estimators: arPLS, AsLS, SNIP, rolling ball, Bruckner, Chebyshev with editable anchor points, and spline. A live preview shows the result, and one setting is applied to the whole block.</p>
+          </article>
+          <article class="feature">
+            <div class="feature__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 20c4 0 5-14 9-14s5 14 9 14"/><path d="M3 20h18"/></svg></div>
+            <h3>Peak fitting</h3>
+            <p>Fit Gaussian peaks interactively, then propagate the model over the series. Integrated intensity, position and width are plotted against temperature, with a quality marker on every point.</p>
+          </article>
+          <article class="feature">
+            <div class="feature__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="14" rx="1"/><path d="M3 9h18M8 4v14"/></svg></div>
+            <h3>2D detectors</h3>
+            <p>For D2B, D16 and XtremeD: a frame-by-frame viewer and virtual-detector reconstruction. The detector images can be re-integrated with your own window and mapping mode.</p>
+          </article>
+          <article class="feature">
+            <div class="feature__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3v12m0 0-4-4m4 4 4-4"/><path d="M4 17v3h16v-3"/></svg></div>
+            <h3>Export for refinement</h3>
+            <p>Export <code>.xys</code> files one per pattern, averaged over a temperature window or in blocks of N. A <code>buffer.buf</code> list for FullProf sequential refinement is written alongside.</p>
+          </article>
+        </div>
+
+        <!-- Gallery -->
+        <div class="gallery" data-gallery>
+          <figure class="gallery__stage">
+            <button class="gallery__zoom" type="button" aria-label="Enlarge screenshot">
+              <img src="img/shots/panda-heatmap-slice.jpg" alt="PANDA heatmap of a temperature series with the slice panel below" width="974" height="662">
+            </button>
+            <figcaption>Temperature series as a heatmap, with the pattern under the cursor shown in the slice panel.</figcaption>
+          </figure>
+          <div class="gallery__thumbs" role="list">
+            <button type="button" role="listitem" class="is-active" data-src="img/shots/panda-heatmap-slice.jpg" data-caption="Temperature series as a heatmap, with the pattern under the cursor shown in the slice panel."><img src="img/shots/panda-heatmap-slice.jpg" alt="Heatmap and slice"></button>
+            <button type="button" role="listitem" data-src="img/shots/panda-overlay.jpg" data-caption="1D overlay of four temperatures, separated with a vertical offset (mouse wheel)."><img src="img/shots/panda-overlay.jpg" alt="1D overlay"></button>
+            <button type="button" role="listitem" data-src="img/shots/panda-3d.jpg" data-caption="3D waterfall view of the same series. The horizontal axis is 2θ, the depth is temperature, and height and colour are intensity."><img src="img/shots/panda-3d.jpg" alt="3D waterfall"></button>
+            <button type="button" role="listitem" data-src="img/shots/panda-block-diff.jpg" data-caption="Block difference: a reference pattern subtracted from every numor of a ramp, plotted against temperature."><img src="img/shots/panda-block-diff.jpg" alt="Block difference"></button>
+            <button type="button" role="listitem" data-src="img/shots/panda-background.jpg" data-caption="Automatic background subtraction: live preview with Chebyshev anchor points and an excluded region."><img src="img/shots/panda-background.jpg" alt="Background subtraction"></button>
+            <button type="button" role="listitem" data-src="img/shots/panda-seqfit.jpg" data-caption="Sequential fit: integrated intensity of two reflections followed from 70 K to 320 K."><img src="img/shots/panda-seqfit.jpg" alt="Sequential fit"></button>
+            <button type="button" role="listitem" data-src="img/shots/panda-virtual-detector.jpg" data-caption="D2B virtual detector reconstructed from the individual detector frames."><img src="img/shots/panda-virtual-detector.jpg" alt="Virtual detector"></button>
+            <button type="button" role="listitem" data-src="img/shots/panda-pyprf.jpg" data-caption="pyPRF: interactive viewer for FullProf .prf files, with hkl tooltips, annotations and figure export."><img src="img/shots/panda-pyprf.jpg" alt="pyPRF viewer"></button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PANDA · how to use -->
+    <section class="section" id="panda-guide">
+      <div class="wrap">
+        <p class="kicker">Using PANDA</p>
+        <h2>Getting started</h2>
+        <p class="section__intro" data-product="panda">A typical session in seven steps. Each step is covered in detail in the
+          <a data-field="manual" href="downloads/PANDA_User_Manual_v1.0.65.pdf" target="_blank">PANDA user manual</a>.</p>
+
+        <ol class="guide">
+          <li>
+            <h3>Configure the experiment</h3>
+            <p>The configuration window opens at start-up. Choose the <strong>instrument</strong>, the <strong>project folder</strong> and the <strong>data folder</strong> with the <code>.nxs</code> files. Set the normalisation (by monitor is recommended), binning and an optional calibration file. The settings are saved in <code>user_config.py</code> in the project folder and restored next time.</p>
+          </li>
+          <li>
+            <h3>Browse the numors</h3>
+            <p>All files are listed with numor, temperature and comment. Click a column header to sort, and right-click it to show more metadata. <strong>Spy mode</strong> shows every column, and the filter box accepts Boolean expressions (<code>FeWO4 AND 300</code>). Cells are editable with <kbd>F2</kbd>.</p>
+          </li>
+          <li>
+            <h3>Look at the data</h3>
+            <p>Hover over a numor to preview it. Select a few for a 1D overlay; the scroll wheel adds a vertical offset. Select more than five and the view becomes a 2D heatmap. Switch the axis between 2θ and Q, use a log scale for weak reflections, or open the 3D views.</p>
+          </li>
+          <li>
+            <h3>Process</h3>
+            <p><strong>Combine</strong> (<kbd>Ctrl</kbd>+<kbd>A</kbd>) sums or averages equivalent scans. <strong>Difference</strong> (<kbd>Ctrl</kbd>+<kbd>D</kbd>) subtracts the second pattern from the first. With more than two selected, it subtracts a chosen baseline from all of them. The background tool corrects a whole ramp with the same settings. Results go to their own workspace, and the raw data are never modified.</p>
+          </li>
+          <li>
+            <h3>Fit peaks</h3>
+            <p>With one pattern selected, press <strong>Fit</strong>. Click either side of a peak to set the background, then click the peak to add a Gaussian. <strong>Sequential Fit</strong> applies the model to every visible pattern and saves the results to the working folder.</p>
+          </li>
+          <li>
+            <h3>Export</h3>
+            <p><strong>Export patterns</strong> writes <code>.xys</code> files one per pattern, averaged over a temperature window, or in blocks of N. Use a filename prefix and <em>Fix 2θ</em> for sequential refinements. <strong>Export figure</strong> saves PNG, PDF or SVG, and <strong>Save log</strong> records the dataset list.</p>
+          </li>
+          <li>
+            <h3>Check the refinement</h3>
+            <p>The <strong>pyPRF</strong> button opens the FullProf result viewer. In <em>Live</em> mode it reloads the <code>.prf</code> each time FullProf rewrites it, so a refinement can be followed while it runs.</p>
+          </li>
+        </ol>
+
+        <h3 class="subhead">Common scientific workflows</h3>
+        <div class="accordion">
+          <details open>
+            <summary>Finding a phase transition</summary>
+            <ol>
+              <li>Load the full temperature series and select all numors: the view switches to a 2D heatmap.</li>
+              <li>Look for peaks that split, shift, appear or lose intensity with temperature.</li>
+              <li>Switch the colour scale to logarithmic to reveal weak or diffuse features.</li>
+              <li>Open the slice panel to read individual temperatures directly on the map.</li>
+            </ol>
+          </details>
+          <details>
+            <summary>Isolating magnetic reflections</summary>
+            <ol>
+              <li>Select a pattern below the ordering temperature, then <kbd>Ctrl</kbd>+click a reference above it.</li>
+              <li>Press <kbd>Ctrl</kbd>+<kbd>D</kbd>: the difference keeps only the magnetic contribution, with propagated errors.</li>
+              <li>For a whole ramp, select all numors plus the reference and choose it as the <em>baseline</em>. You get one difference per temperature, ready to plot as a heatmap.</li>
+              <li>Check that both patterns have comparable statistics and normalisation before interpreting weak signals.</li>
+            </ol>
+          </details>
+          <details>
+            <summary>Preparing data for FullProf</summary>
+            <ol>
+              <li>Select equivalent measurements (same sample, temperature and configuration) and combine them.</li>
+              <li>Check the combined pattern visually, then export it as <code>.xys</code>.</li>
+              <li>For a series, export with a prefix such as <code>MySample_ramp</code>. PANDA numbers the files <code>_001 … _999</code> and writes <code>buffer.buf</code> for FullProf's sequential mode.</li>
+              <li>After refining, open the <code>.prf</code> in pyPRF to inspect and export the fit.</li>
+            </ol>
+          </details>
+        </div>
+
+        <h3 class="subhead">Supported instruments</h3>
+        <div class="table-wrap">
+          <table class="spec">
+            <thead><tr><th scope="col">Instrument</th><th scope="col">Type</th><th scope="col">What PANDA adds</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">D20</th><td>High-flux powder diffractometer</td><td>Fast temperature series and live acquisition with incremental reload.</td></tr>
+              <tr><th scope="row">D1B</th><td>Medium-resolution powder, magnetic structures</td><td>Uses the NOMAD-calibrated data, or the raw counts with your own efficiency calibration.</td></tr>
+              <tr><th scope="row">D2B</th><td>High-resolution powder, 2D detector</td><td>Frame viewer, virtual detector, re-integration with a configurable window.</td></tr>
+              <tr><th scope="row">D16</th><td>Cold-neutron diffractometer, 2D detector</td><td>Inspection of the raw detector images before conical integration, which matters for diffuse or anisotropic scattering.</td></tr>
+              <tr><th scope="row">XtremeD</th><td>Powder under extreme conditions</td><td>2D-detector tools, temperature- and numor-dependent series.</td></tr>
+              <tr><th scope="row">Other</th><td>Any source</td><td>XYS / DAT / XY column files, Malvern Panalytical XRDML, and GSAS TOF (converted to d and Q when calibration parameters are given).</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <details class="shortcuts">
+          <summary>Keyboard shortcuts</summary>
+          <dl class="keys">
+            <div><dt><kbd>Ctrl</kbd>+<kbd>R</kbd></dt><dd>Reload folder (new numors only)</dd></div>
+            <div><dt><kbd>Ctrl</kbd>+<kbd>A</kbd></dt><dd>Combine selection · select all if nothing is selected</dd></div>
+            <div><dt><kbd>Ctrl</kbd>+<kbd>D</kbd></dt><dd>Difference (first − second) or block difference</dd></div>
+            <div><dt><kbd>Ctrl</kbd>+<kbd>H</kbd></dt><dd>Hide selected numors</dd></div>
+            <div><dt><kbd>Ctrl</kbd>+<kbd>S</kbd></dt><dd>Show all hidden numors</dd></div>
+            <div><dt><kbd>Ctrl</kbd>+<kbd>C</kbd></dt><dd>Copy the selection to the clipboard</dd></div>
+            <div><dt><kbd>Shift</kbd>+click</dt><dd>Select a range of numors</dd></div>
+            <div><dt><kbd>Ctrl</kbd>+right-click</dt><dd>Send to workspace · delete a virtual dataset</dd></div>
+            <div><dt><kbd>F2</kbd> / double-click</dt><dd>Edit a cell · with several rows selected, edit the whole column</dd></div>
+            <div><dt>Drag on plot</dt><dd>Zoom · right-click resets the view</dd></div>
+            <div><dt>Scroll wheel</dt><dd>Vertical offset between 1D curves</dd></div>
+            <div><dt>Double-click on map</dt><dd>Movable guide line</dd></div>
+          </dl>
+        </details>
+      </div>
+    </section>
+
+    <!-- ===================================================== Edit_PyCR -->
+    <section class="section section--tint" id="edit-pycr">
+      <div class="wrap">
+        <header class="prodhead">
+          <img src="img/edit-pycr-icon.png" alt="" class="prodhead__logo" width="72" height="72">
+          <div>
+            <p class="kicker">FullProf PCR editor</p>
+            <h2>Edit_PyCR <span class="pill" data-product="editpycr"><span data-field="version">v0.4.0</span></span></h2>
+          </div>
+        </header>
+        <div class="intro-grid">
+          <div>
+            <p class="lede">
+              A dedicated editor for FullProf <code>.pcr</code> files. It knows which numbers
+              are refinement codes, where each phase and pattern begins, and what every keyword
+              means. You spend less time counting columns and more time refining.
+            </p>
+            <p>
+              It does not replace FullProf. <code>fp2k</code> and FullProf's own converters
+              still do the calculation. Edit_PyCR handles everything around them: setting up the
+              file, running it, and keeping track of what each run changed.
+            </p>
+          </div>
+          <dl class="facts">
+            <div><dt>Status</dt><dd>Early release · feedback welcome</dd></div>
+            <div><dt>Requires</dt><dd><a href="https://www.ill.eu/sites/fullprof/" target="_blank" rel="noopener">FullProf Suite</a> installed</dd></div>
+            <div><dt>Refinements</dt><dd>Rietveld · profile matching · single crystal · magnetic</dd></div>
+            <div><dt>Radiation</dt><dd>Neutron CW and TOF · X-ray</dd></div>
+          </dl>
+        </div>
+
+        <div class="features-grid">
+          <article class="feature feature--pycr">
+            <div class="feature__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 5h6M4 12h6M4 19h6M10 5v14M10 12h4M14 8h6M14 16h6M14 8v8"/></svg></div>
+            <h3>Structure tree</h3>
+            <p>An outline of experiments, phases, background, excluded regions, constraints and restraints. Right-click any block for the right editor, and drag phases between files.</p>
+          </article>
+          <article class="feature feature--pycr">
+            <div class="feature__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M9 9v11"/></svg></div>
+            <h3>Guided dialogs</h3>
+            <p>Atoms (including anisotropic ADPs and magnetic moments), cell, profile, instrument parameters and <code>.irf</code> files, background points and global VARY/FIX commands. Each value has its own Refine box.</p>
+          </article>
+          <article class="feature feature--pycr">
+            <div class="feature__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M14 3H6a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V8z"/><path d="M14 3v5h5M9 13h6M9 17h4"/></svg></div>
+            <h3>New files in seconds</h3>
+            <p>Build a <code>.pcr</code> from a CIF or magnetic CIF with FullProf's own converters, or start from a catalogue of real example files. Several files can be merged into one multi-phase or multi-pattern refinement.</p>
+          </article>
+          <article class="feature feature--pycr">
+            <div class="feature__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6 4l14 8-14 8z"/></svg></div>
+            <h3>Run and compare</h3>
+            <p>Run FullProf with a live quality display for each cycle, then accept or discard the result. A history chart tracks χ², R-factors and cell parameters over the accepted runs.</p>
+          </article>
+          <article class="feature feature--pycr">
+            <div class="feature__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 18h4v-4H4zM10 18h4V9h-4zM16 18h4V5h-4z"/></svg></div>
+            <h3>Strategies &amp; series</h3>
+            <p>Release parameters in stages instead of all at once. Refine a numbered series of data files in sequence, each run starting from the previous result.</p>
+          </article>
+          <article class="feature feature--pycr">
+            <div class="feature__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h10M4 17h13"/><circle cx="19" cy="15" r="2.5"/></svg></div>
+            <h3>An editor that knows the format</h3>
+            <p>Highlighting that tells fixed values from refined codes, keyword tooltips from the FullProf documentation, folding, column selection and one-click renumbering of parameters.</p>
+          </article>
+        </div>
+
+        <!-- Gallery -->
+        <div class="gallery" data-gallery>
+          <figure class="gallery__stage">
+            <button class="gallery__zoom" type="button" aria-label="Enlarge screenshot">
+              <img src="img/edit-pycr-main.png" alt="Edit_PyCR main window" width="1770" height="1080">
+            </button>
+            <figcaption>Main window: structure tree on the left, highlighted editor in the middle, refinement history below.</figcaption>
+          </figure>
+          <div class="gallery__thumbs" role="list">
+            <button type="button" role="listitem" class="is-active" data-src="img/edit-pycr-main.png" data-caption="Main window: structure tree on the left, highlighted editor in the middle, refinement history below."><img src="img/edit-pycr-main.png" alt="Main window"></button>
+            <button type="button" role="listitem" data-src="img/shots/pycr-tree.jpg" data-caption="Right-click a phase in the structure tree. Counts that no longer match the file are flagged in red."><img src="img/shots/pycr-tree.jpg" alt="Structure tree"></button>
+            <button type="button" role="listitem" data-src="img/shots/pycr-atoms.jpg" data-caption="Atoms dialog: positions, occupancies and displacement parameters, each with its own Refine checkbox."><img src="img/shots/pycr-atoms.jpg" alt="Atoms dialog"></button>
+            <button type="button" role="listitem" data-src="img/shots/pycr-background.jpg" data-caption="Determine background: points found automatically on the raw data, then adjusted directly on the plot."><img src="img/shots/pycr-background.jpg" alt="Determine background"></button>
+            <button type="button" role="listitem" data-src="img/shots/pycr-excluded.jpg" data-caption="Excluded regions marked graphically on the pattern."><img src="img/shots/pycr-excluded.jpg" alt="Excluded regions"></button>
+            <button type="button" role="listitem" data-src="img/shots/pycr-history.jpg" data-caption="Refinement history: χ² of every accepted run. Double-click a bar to reload that state."><img src="img/shots/pycr-history.jpg" alt="Refinement history"></button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Edit_PyCR · how to use -->
+    <section class="section" id="edit-pycr-guide">
+      <div class="wrap">
+        <p class="kicker">Using Edit_PyCR</p>
+        <h2>A typical refinement</h2>
+        <p class="section__intro" data-product="editpycr">The usual order of work. Any step can be revisited at any time. The
+          <a data-field="manual" href="downloads/Edit_PyCR_User_Manual_v0.4.0.pdf" target="_blank">Edit_PyCR user manual</a>
+          describes every menu, panel and dialog.</p>
+
+        <ol class="guide guide--pycr">
+          <li>
+            <h3>Start the file</h3>
+            <p>Open an existing <code>.pcr</code> (or drag it onto the window). Otherwise use <strong>Create</strong>: from a CIF, from an mCIF, from a template, or by combining open files into a multi-phase or multi-pattern refinement.</p>
+          </li>
+          <li>
+            <h3>Point it at the data</h3>
+            <p>Right-click the experiment in the tree and choose <strong>Set data file…</strong>. The pattern panel plots the raw data straight away, before any refinement.</p>
+          </li>
+          <li>
+            <h3>Background and excluded regions</h3>
+            <p>On that plot, <strong>Determine background…</strong> suggests background points automatically; left-click adds a point and right-click removes one. <strong>Define excluded regions…</strong> marks ranges with a double-click.</p>
+          </li>
+          <li>
+            <h3>Instrument and phases</h3>
+            <p>Check the wavelength and resolution function, or load an <code>.irf</code> from FullProf's library. Then edit cell parameters and atoms from the phase's right-click menu, or fill an empty phase from a CIF.</p>
+          </li>
+          <li>
+            <h3>Decide what refines</h3>
+            <p>Start with the scale and background. Build a <strong>Strategy</strong> to release the other parameters in stages. Link parameters under <em>Constrained parameters</em>, add linear restraints or box limits, and <strong>Auto-renumber</strong> to close numbering gaps.</p>
+          </li>
+          <li>
+            <h3>Run, compare, iterate</h3>
+            <p><strong>Run FullProf</strong>, watch the live quality display, then <em>Accept</em> or <em>Discard</em>. The refinement history shows whether the run was better than the last one. Once the model works, <strong>Sequential</strong> applies it to a whole series.</p>
+          </li>
+        </ol>
+
+        <div class="split">
+          <aside class="callout">
+            <h3>Refinement codes, briefly</h3>
+            <p>Every refinable value in a <code>.pcr</code> is followed by a code:</p>
+            <dl class="codes">
+              <div><dt><code>0</code></dt><dd>fixed: the value is never changed</dd></div>
+              <div><dt><code>1.00</code></dt><dd>“refine this”: FullProf assigns the number itself (Aut=1)</dd></div>
+              <div><dt><code>21.00</code></dt><dd>parameter 2 with multiplier 1. Codes sharing a number refine together, and a negative multiplier moves the other way</dd></div>
+            </dl>
+            <p>Edit_PyCR writes these codes for you. Constraints, restraints and box limits refer to plain parameter numbers, and renumbering keeps them all consistent.</p>
+          </aside>
+          <aside class="callout callout--plain">
+            <h3>Safe by design</h3>
+            <ul class="ticks">
+              <li><strong>Check this file</strong> runs FullProf on a throwaway copy, so your file and its outputs are never touched.</li>
+              <li><strong>Discard</strong> puts back the file exactly as it was before the run.</li>
+              <li>The history keeps only the runs you accepted, and any of them can be reloaded.</li>
+              <li><strong>Refinement summary</strong> lists every refined value with its esd and the Bragg R-factors.</li>
+              <li><strong>Kill fp2k</strong> stops a FullProf run that has hung.</li>
+            </ul>
+          </aside>
+        </div>
+
+        <details class="shortcuts">
+          <summary>Keyboard shortcuts</summary>
+          <dl class="keys">
+            <div><dt><kbd>Ctrl</kbd>+<kbd>O</kbd> / <kbd>Ctrl</kbd>+<kbd>S</kbd></dt><dd>Open / Save</dd></div>
+            <div><dt><kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>S</kbd></dt><dd>Save as</dd></div>
+            <div><dt><kbd>Ctrl</kbd>+<kbd>F</kbd> / <kbd>Ctrl</kbd>+<kbd>H</kbd></dt><dd>Find / Replace · <kbd>F3</kbd> next</dd></div>
+            <div><dt><kbd>Alt</kbd>+drag</dt><dd>Column selection (for a column of codes)</dd></div>
+            <div><dt><kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>[</kbd> / <kbd>]</kbd></dt><dd>Fold / unfold all sections</dd></div>
+            <div><dt><kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>A</kbd></dt><dd>Show whole file (undo “Show only this”)</dd></div>
+            <div><dt><kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>M</kbd></dt><dd>Move tab to the other view (side by side)</dd></div>
+            <div><dt><kbd>Ctrl</kbd>+scroll · <kbd>Ctrl</kbd>+<kbd>0</kbd></dt><dd>Zoom · reset zoom</dd></div>
+          </dl>
+        </details>
+      </div>
+    </section>
+
+    <!-- ===================================================== Download -->
+    <section class="section section--tint" id="download">
       <div class="wrap">
         <div class="software__head">
           <div>
-            <p class="kicker">Software</p>
-            <h2>Downloads &amp; releases</h2>
+            <p class="kicker">Download</p>
+            <h2>Get the latest version</h2>
             <p class="section__intro">
-              Free desktop tools for ILL diffraction users. This page always points to the
-              <strong>latest version</strong>; the release notes below list what changed in each
-              version.
+              Both programs are free and ship as a self-contained folder for Windows 64-bit.
+              This page always links to the <strong>latest release</strong>. The user manual is
+              included in the program (Help › About) and can also be downloaded below.
             </p>
           </div>
           <ol class="steps" aria-label="How to install">
-            <li><strong>Download</strong> the zip for Windows 64-bit</li>
-            <li><strong>Unzip</strong> it anywhere — no installation, no admin rights</li>
+            <li><strong>Download</strong> the zip</li>
+            <li><strong>Unzip</strong> it anywhere, with no installation and no admin rights</li>
             <li><strong>Run</strong> <code>PANDA.exe</code> or <code>FullProf_Editor.exe</code></li>
           </ol>
         </div>
 
-        <!-- PANDA -->
-        <article class="product" id="panda" data-product="panda">
-          <div class="product__media">
-            <a href="img/panda-main.png" target="_blank" title="Open full-size screenshot"><img src="img/panda-main.png" alt="PANDA main window: list of measured runs on the left and a powder diffraction pattern on the right" loading="lazy" width="1154" height="642"></a>
-          </div>
-          <div class="product__body">
-            <header class="product__head">
-              <img src="img/panda-icon.png" alt="" class="product__logo" width="56" height="56">
+        <div class="dl-grid">
+          <article class="dl" data-product="panda">
+            <header class="dl__head">
+              <img src="img/panda-icon.png" alt="" width="52" height="52">
               <div>
-                <h3>PANDA <span class="pill" data-field="version">v1.0.64</span></h3>
-                <p class="product__sub">Powder Analysis for Neutron Diffraction Applications</p>
+                <h3>PANDA <span class="pill" data-field="version">v1.0.65</span></h3>
+                <p>Powder data browser &amp; reduction</p>
               </div>
             </header>
-            <p>Browse, process and visualise neutron powder-diffraction data straight from the instrument: open a data folder, pick the runs, and go from raw NeXus files to normalised, background-subtracted patterns ready for Rietveld refinement.</p>
-            <ul class="features">
-              <li>Normalise, bin, combine and subtract backgrounds (Chebyshev, SNIP, arPLS…)</li>
-              <li>1D, 2D heat-map and 3D views of temperature or pressure series</li>
-              <li>2D-detector integration with statistical uncertainties</li>
-              <li>Peak fitting and export to <code>.xys</code></li>
-              <li>Built-in <strong>pyPRF</strong> viewer for FullProf Rietveld results</li>
-            </ul>
             <dl class="meta">
-              <div><dt>Released</dt><dd data-field="date">19 Sep 2026</dd></div>
-              <div><dt>Instruments</dt><dd>D1B, D2B, D16, D20, XtremeD</dd></div>
-              <div><dt>Formats</dt><dd>NeXus, XYSigma, XRDML, GSAS TOF</dd></div>
+              <div><dt>Released</dt><dd data-field="date">29 Sep 2026</dd></div>
+              <div><dt>Size</dt><dd data-field="size">177 MB</dd></div>
+              <div><dt>Platform</dt><dd>Windows 64-bit</dd></div>
               <div><dt>Licence</dt><dd>GPL-3.0</dd></div>
             </dl>
-            <div class="product__actions">
-              <a class="btn btn--primary" data-field="file" href="downloads/PANDA_v1.0.64_Windows_x64.zip" download>
+            <div class="dl__actions">
+              <a class="btn btn--primary btn--block" data-field="file" href="downloads/PANDA_v1.0.65_Windows_x64.zip" download>
                 <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11m0 0-4-4m4 4 4-4M5 20h14"/></svg>
-                <span>Download <span data-field="version">v1.0.64</span> <span class="btn__size">(Windows, <span data-field="size">179 MB</span>)</span></span>
+                <span>Download <span data-field="version">v1.0.65</span></span>
               </a>
-              <a class="btn btn--ghost" data-field="manual" href="downloads/PANDA_User_Manual_v1.0.64.pdf" target="_blank">User manual (PDF)</a>
-              <a class="btn btn--link" href="#news" data-news="panda">What’s new →</a>
+              <a class="btn btn--ghost btn--block" data-field="manual" href="downloads/PANDA_User_Manual_v1.0.65.pdf" target="_blank">User manual (PDF)</a>
             </div>
-          </div>
-        </article>
+          </article>
 
-        <!-- Edit_PyCR -->
-        <article class="product product--reverse" id="edit-pycr" data-product="editpycr">
-          <div class="product__media">
-            <a href="img/edit-pycr-main.png" target="_blank" title="Open full-size screenshot"><img src="img/edit-pycr-main.png" alt="Edit_PyCR main window: structure tree of a FullProf PCR file and the syntax-highlighted editor" loading="lazy" width="1770" height="1080"></a>
-          </div>
-          <div class="product__body">
-            <header class="product__head">
-              <img src="img/edit-pycr-icon.png" alt="" class="product__logo" width="56" height="56">
+          <article class="dl" data-product="editpycr">
+            <header class="dl__head">
+              <img src="img/edit-pycr-icon.png" alt="" width="52" height="52">
               <div>
-                <h3>Edit_PyCR <span class="pill" data-field="version">v0.3.0</span></h3>
-                <p class="product__sub">FullProf PCR editor</p>
+                <h3>Edit_PyCR <span class="pill" data-field="version">v0.4.0</span></h3>
+                <p>FullProf PCR editor</p>
               </div>
             </header>
-            <p>A dedicated editor for FullProf <code>.pcr</code> refinement files. It understands the file — which numbers are refinement codes, where each phase and pattern begins, what each keyword means — so less time goes into counting columns and more into refining.</p>
-            <ul class="features">
-              <li>Syntax highlighting, folding and a structure outline of phases and patterns</li>
-              <li>Guided dialogs for cell, atoms, profile, background and excluded regions</li>
-              <li>CIF / mCIF → PCR conversion and templates, using FullProf’s own programs</li>
-              <li>Sequential refinements and staged refinement strategies</li>
-              <li>Run FullProf, plot the <code>.prf</code> pattern and follow χ² and R-factors</li>
-            </ul>
             <dl class="meta">
-              <div><dt>Released</dt><dd data-field="date">23 Sep 2026</dd></div>
-              <div><dt>Status</dt><dd>Early release — feedback welcome</dd></div>
-              <div><dt>Requires</dt><dd>FullProf Suite</dd></div>
+              <div><dt>Released</dt><dd data-field="date">29 Sep 2026</dd></div>
+              <div><dt>Size</dt><dd data-field="size">76 MB</dd></div>
               <div><dt>Platform</dt><dd>Windows 64-bit</dd></div>
+              <div><dt>Requires</dt><dd>FullProf Suite</dd></div>
             </dl>
-            <div class="product__actions">
-              <a class="btn btn--primary" data-field="file" href="downloads/Edit_PyCR_v0.3.0_Windows_x64.zip" download>
+            <div class="dl__actions">
+              <a class="btn btn--primary btn--block" data-field="file" href="downloads/Edit_PyCR_v0.4.0_Windows_x64.zip" download>
                 <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11m0 0-4-4m4 4 4-4M5 20h14"/></svg>
-                <span>Download <span data-field="version">v0.3.0</span> <span class="btn__size">(Windows, <span data-field="size">77 MB</span>)</span></span>
+                <span>Download <span data-field="version">v0.4.0</span></span>
               </a>
-              <a class="btn btn--ghost" data-field="manual" href="downloads/Edit_PyCR_User_Manual_v0.3.0.pdf" target="_blank">User manual (PDF)</a>
-              <a class="btn btn--link" href="#news" data-news="editpycr">What’s new →</a>
+              <a class="btn btn--ghost btn--block" data-field="manual" href="downloads/Edit_PyCR_User_Manual_v0.4.0.pdf" target="_blank">User manual (PDF)</a>
             </div>
-          </div>
-        </article>
+            <p class="dl__note">Edit_PyCR calls FullProf's own programs. If they are not on the system PATH, use <em>PCR › Locate FullProf installation…</em></p>
+          </article>
+        </div>
 
         <!-- Release notes -->
         <div class="news" id="news">
@@ -212,175 +570,29 @@
           <div class="news__panel" id="news-panel" role="tabpanel">
             <!-- news:start -->
             <article class="release release--latest"><header><span class="release__v">PANDA 1.0.65</span><time class="release__date">29 Sep 2026</time><a class="release__tag" href="downloads/PANDA_v1.0.65_Windows_x64.zip" download>Latest · download</a></header><ul><li><span class="kind kind--improved">Improved</span><span>Maintenance release.</span></li></ul></article>
-            <article class="release"><header><span class="release__v">PANDA 1.0.64</span><time class="release__date">28 Sep 2026</time></header><ul><li><span class="kind kind--new">New</span><span>Pretreated 1D data in <code>.xy</code> files (2θ and intensity only) can be loaded; uncertainties are estimated as √I, with a minimum of 1 count.</span></li><li><span class="kind kind--new">New</span><span>D2B virtual detector: the save dialog can export the image as XYZS or Origin ASCII (γ, vertical pixel, counts), as the heatmap already could.</span></li><li><span class="kind kind--improved">Improved</span><span><code>.xys</code>, <code>.dat</code> and <code>.xy</code> files: a <code>Wavelength = value</code> header line is read as the wavelength and shown in the Wavelength (Å) column.</span></li><li><span class="kind kind--improved">Improved</span><span>D16 and XtremeD: the uncertainty of each 2θ channel is now the purely statistical (Poisson) error propagated from the detector pixels. Refinements of these data give honest χ² values that reflect how well the model fits. D2B is unchanged.</span></li><li><span class="kind kind--new">New</span><span>The user manual explains how the 2D-detector uncertainties are computed.</span></li></ul></article>
-            <article class="release"><header><span class="release__v">PANDA 1.0.63</span><time class="release__date">2 Aug 2026</time></header><ul><li><span class="kind kind--new">New</span><span>pyPRF: a Q button switches the Rietveld plot between the native axis and Q (Å⁻¹), for both constant-wavelength and time-of-flight data. Bragg ticks, excluded regions and hover values follow.</span></li><li><span class="kind kind--new">New</span><span>The About dialog and the user manual can be opened from the start-up window, before loading any data.</span></li><li><span class="kind kind--new">New</span><span>Background subtraction: a “None” option that only crops the excluded ranges, and an option to remove excluded ranges from the output.</span></li><li><span class="kind kind--improved">Improved</span><span>D16 and XtremeD uncertainties use the error of the mean over the pixels of each 2θ channel instead of their spread, which overestimated them.</span></li></ul></article>
-            <article class="release"><header><span class="release__v">PANDA 1.0.62</span><time class="release__date">1 Aug 2026</time></header><ul><li><span class="kind kind--new">New</span><span>Automatic background subtraction for all selected runs, with seven estimators (Chebyshev — the default —, arPLS, AsLS, SNIP, rolling ball, Bruckner and spline), a live preview and hand-editable anchor points. The corrected patterns are collected in a new workspace.</span></li><li><span class="kind kind--fixed">Fixed</span><span>Font size of the data trees on high-resolution screens.</span></li></ul></article>
             <!-- news:end -->
           </div>
         </div>
-
-        <p class="note">Found a bug or missing a feature? <a href="#contact">Get in touch</a> — user feedback shapes every release.</p>
       </div>
     </section>
 
-    <!-- About -->
-    <section class="section" id="about">
+    <!-- ===================================================== Support -->
+    <section class="section section--dark" id="support">
       <div class="wrap grid-2">
         <div>
-          <p class="kicker">About</p>
-          <h2>Background</h2>
-          <p>
-            My research uses neutron and X-ray diffraction to connect crystal and magnetic structure
-            with physical properties. A large part of it concerns molecule-based and hybrid materials
-            — coordination polymers, metal–organic frameworks and hybrid perovskites — where subtle
-            structural changes such as order–disorder transitions, incommensurate modulations or
-            rearrangements of the hydrogen-bond network switch on ferroelectricity, magnetoelectric
-            coupling or proton conduction.
-          </p>
-          <p>
-            The short wavelength of D9 makes it ideal for accurate structural work: hydrogen positions
-            in minerals and molecular crystals, anharmonic thermal motion, and data to very high
-            momentum transfer. Recent studies include incommensurate magnetic order in formate
-            perovskites, spin spirals in layered perovskites and Weyl semimetals, lattice dynamics in
-            superionic conductors, and crystals followed across wide temperature and pressure ranges.
-          </p>
-          <p>
-            A physicist by training (PhD, Universidad de La Laguna, 2008), I was instrument scientist
-            on the CRG powder diffractometer D1B for ICMA (CSIC – Universidad de Zaragoza) before
-            joining the ILL Diffraction Group in 2014.
-          </p>
-        </div>
-        <ol class="timeline" aria-label="Career">
-          <li>
-            <span class="timeline__date">2014 – today</span>
-            <h3>Institut Laue-Langevin</h3>
-            <p>Instrument scientist, responsible for D9 and DRX.</p>
-          </li>
-          <li>
-            <span class="timeline__date">2009 – 2014</span>
-            <h3>ICMA (CSIC – Univ. Zaragoza)</h3>
-            <p>Instrument scientist, D1B at the ILL.</p>
-          </li>
-          <li>
-            <span class="timeline__date">2008</span>
-            <h3>PhD in Physics, Universidad de La Laguna</h3>
-            <p>Molecule-based magnetic materials.</p>
-          </li>
-        </ol>
-      </div>
-    </section>
-
-    <!-- Research -->
-    <section class="section section--tint" id="research">
-      <div class="wrap">
-        <p class="kicker">Research</p>
-        <h2>What I work on</h2>
-        <div class="cards cards--4">
-          <article class="card">
-            <div class="card__icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="2"/><circle cx="5" cy="7" r="1.3"/><circle cx="19" cy="7" r="1.3"/><circle cx="5" cy="17" r="1.3"/><circle cx="19" cy="17" r="1.3"/><circle cx="12" cy="4" r="1"/><circle cx="12" cy="20" r="1"/></svg>
-            </div>
-            <h3>Single-crystal neutron diffraction</h3>
-            <p>High-resolution data to large momentum transfer: precise atomic positions, hydrogen bonding, thermal motion and disorder.</p>
-          </article>
-          <article class="card">
-            <div class="card__icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24"><path d="M6 18 18 6M14 6h4v4"/><path d="M6 6l4 4M18 18l-4-4"/></svg>
-            </div>
-            <h3>Magnetic structures &amp; multiferroics</h3>
-            <p>Commensurate and incommensurate magnetic order, spin densities and magnetoelectric coupling, with polarised and unpolarised neutrons.</p>
-          </article>
-          <article class="card">
-            <div class="card__icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24"><path d="M4 8h16v8H4zM8 8v8M16 8v8M4 12h16"/></svg>
-            </div>
-            <h3>Molecular magnets &amp; MOFs</h3>
-            <p>Coordination polymers, metal–organic frameworks and hybrid perovskites: how the linker and the lattice shape the magnetism.</p>
-          </article>
-          <article class="card">
-            <div class="card__icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24"><path d="M12 3v12M9 12a3 3 0 1 0 6 0M5 21h14M8 7h2M8 10h2"/></svg>
-            </div>
-            <h3>Phase transitions under extreme conditions</h3>
-            <p>Thermal expansion, high pressure and structural phase transitions followed with neutron and X-ray diffraction.</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- Instruments -->
-    <section class="section" id="instruments">
-      <div class="wrap">
-        <p class="kicker">Instruments</p>
-        <h2>Where the data come from</h2>
-        <div class="cards cards--2">
-          <article class="card card--instrument">
-            <span class="badge">Responsible</span>
-            <h3>D9 <small>Hot neutron four-circle diffractometer</small></h3>
-            <p>One of the shortest neutron wavelengths available at any reactor (0.35 – 0.85 Å), a Eulerian cradle and a 2D detector: Bragg intensities to very high momentum transfer, atomic displacements resolved to ~0.001 Å, and access to absorbing elements such as Gd or Sm.</p>
-            <a class="link-arrow" href="https://www.ill.eu/en/for-ill-users/instruments/instruments-list/d9/" target="_blank" rel="noopener">D9 at ill.eu</a>
-          </article>
-          <article class="card card--instrument">
-            <span class="badge">Responsible</span>
-            <h3>DRX <small>X-ray diffraction</small></h3>
-            <p>X-ray diffraction support for the Diffraction Group and its users: sample screening and characterisation before and alongside the neutron experiment.</p>
-            <a class="link-arrow" href="https://www.ill.eu/about-the-ill/contacts/instrument-responsibles" target="_blank" rel="noopener">Instrument responsibles</a>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- Publications -->
-    <section class="section" id="publications">
-      <div class="wrap">
-        <p class="kicker">Publications</p>
-        <h2>Papers</h2>
-
-        <h3 class="subhead">Most cited</h3>
-        <ol class="highlights">
-          <li>
-            <a href="https://doi.org/10.1021/ja206917z" target="_blank" rel="noopener">High proton conduction in a chiral ferromagnetic metal–organic quartz-like framework</a>
-            <span>J. Am. Chem. Soc. 133, 15328 (2011)</span>
-          </li>
-          <li>
-            <a href="https://doi.org/10.1038/s41563-023-01560-x" target="_blank" rel="noopener">Extreme phonon anharmonicity underpins superionic diffusion and ultralow thermal conductivity in argyrodite Ag<sub>8</sub>SnSe<sub>6</sub></a>
-            <span>Nature Materials 22, 999 (2023)</span>
-          </li>
-          <li>
-            <a href="https://doi.org/10.1021/ja3082457" target="_blank" rel="noopener">The role of order–disorder transitions in the quest for molecular multiferroics</a>
-            <span>J. Am. Chem. Soc. 134, 19772 (2012)</span>
-          </li>
-          <li>
-            <a href="https://doi.org/10.1002/anie.201501691" target="_blank" rel="noopener">Postsynthetic improvement of the physical properties in a metal–organic framework through a single crystal to single crystal transmetallation</a>
-            <span>Angew. Chem. Int. Ed. 54, 6521 (2015)</span>
-          </li>
-        </ol>
-
-        <h3 class="subhead">All publications</h3>
-        <div class="pubtools">
-          <label class="search">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6"/><path d="m20 20-4.5-4.5"/></svg>
-            <input type="search" id="pub-search" placeholder="Search title, author, journal…" aria-label="Search publications">
-          </label>
-          <div class="chips" id="pub-years" role="group" aria-label="Filter by period"></div>
-        </div>
-        <p class="pubcount" id="pub-count" aria-live="polite"></p>
-        <div id="pub-list" class="publist"></div>
-        <button class="btn btn--ghost btn--block" id="pub-more" hidden>Show more</button>
-        <noscript><p>The list needs JavaScript. See the full list on <a href="https://orcid.org/0000-0001-6452-8830">ORCID</a>.</p></noscript>
-      </div>
-    </section>
-
-    <!-- Contact -->
-    <section class="section section--dark" id="contact">
-      <div class="wrap grid-2">
-        <div>
-          <p class="kicker kicker--light">Contact</p>
-          <h2>Get in touch</h2>
-          <p>Questions about an experiment on D9 or a proposal, or bug reports and feature requests for PANDA and Edit_PyCR — all welcome.</p>
-          <a class="btn btn--light" href="mailto:fabelo@ill.fr">fabelo@ill.fr</a>
+          <p class="kicker kicker--light">Support</p>
+          <h2>Questions, bugs and ideas</h2>
+          <p>Both programs are developed at the ILL Diffraction Group, and user feedback shapes every
+            release. If something does not work, or a feature would save you time, please get in touch.
+            A bug report is most useful with the program version (Help › About), what you did, and if
+            possible the file that caused the problem.</p>
+          <div class="support__cta">
+            <a class="btn btn--light" href="mailto:fabelo@ill.fr?subject=PANDA%20%2F%20Edit_PyCR">fabelo@ill.fr</a>
+            <a class="btn btn--outline-light" href="#download">User manuals</a>
+          </div>
         </div>
         <address class="contact">
+          <p class="contact__who"><strong>Oscar Fabelo</strong><br>Instrument scientist · author of PANDA and Edit_PyCR</p>
           <p><strong>Institut Laue-Langevin</strong><br>
             Diffraction Group<br>
             71 avenue des Martyrs, CS 20156<br>
@@ -394,13 +606,18 @@
 
   <footer class="footer">
     <div class="wrap footer__inner">
-      <p>© <span id="year">2026</span> Oscar Fabelo · Institut Laue-Langevin</p>
+      <p>© <span id="year">2026</span> Institut Laue-Langevin · PANDA and Edit_PyCR are developed by Oscar Fabelo, ILL Diffraction Group.</p>
       <a href="#top">Back to top ↑</a>
     </div>
   </footer>
 
-  <script src="js/releases.js?v=202609290012"></script>
-  <script src="js/publications.js?v=202609290012"></script>
-  <script src="js/main.js?v=202609290012"></script>
+  <dialog class="lightbox" id="lightbox" aria-label="Screenshot">
+    <form method="dialog"><button class="lightbox__close" aria-label="Close">×</button></form>
+    <img alt="">
+    <p class="lightbox__caption"></p>
+  </dialog>
+
+  <script src="js/releases.js?v=202609301900"></script>
+  <script src="js/main.js?v=202609301900"></script>
 </body>
 </html>

@@ -1,4 +1,4 @@
-/* Oscar Fabelo – personal page: navigation, Laue pattern, publication list. */
+/* PANDA & Edit_PyCR – navigation, Laue pattern, screenshots, downloads and release notes. */
 (function () {
   "use strict";
 
@@ -17,18 +17,21 @@
   });
 
   /* ---------- Active section in the nav ---------- */
+  // The guide sections below each product count as part of that product.
   const navLinks = [...links.querySelectorAll("a")];
-  const sections = navLinks.map((a) => document.querySelector(a.getAttribute("href")));
+  const owner = { "panda-guide": "panda", "edit-pycr-guide": "edit-pycr" };
   const spy = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
       if (!entry.isIntersecting) return;
-      navLinks.forEach((a) => a.classList.toggle("is-active", a.getAttribute("href") === "#" + entry.target.id));
+      const id = owner[entry.target.id] || entry.target.id;
+      navLinks.forEach((a) => a.classList.toggle("is-active", a.getAttribute("href") === "#" + id));
     });
   }, { rootMargin: "-45% 0px -50% 0px" });
-  sections.forEach((s) => s && spy.observe(s));
+  ["panda", "panda-guide", "edit-pycr", "edit-pycr-guide", "download", "news", "support"]
+    .forEach((id) => { const s = document.getElementById(id); if (s) spy.observe(s); });
 
   /* ---------- Reveal on scroll ---------- */
-  const revealables = document.querySelectorAll(".card, .product, .timeline li, .highlights li");
+  const revealables = document.querySelectorAll(".feature, .flow__step, .guide li, .dl, .gallery, .callout");
   const reveal = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
@@ -70,6 +73,34 @@
     }
   }
 
+  /* ---------- Screenshot galleries ---------- */
+  const lightbox = document.getElementById("lightbox");
+  document.querySelectorAll("[data-gallery]").forEach((gal) => {
+    const stageImg = gal.querySelector(".gallery__zoom img");
+    const caption = gal.querySelector("figcaption");
+    const thumbs = [...gal.querySelectorAll(".gallery__thumbs button")];
+    thumbs.forEach((t) => t.addEventListener("click", () => {
+      thumbs.forEach((b) => b.classList.toggle("is-active", b === t));
+      stageImg.src = t.dataset.src;
+      stageImg.alt = t.querySelector("img").alt;
+      caption.textContent = t.dataset.caption;
+    }));
+    gal.querySelector(".gallery__zoom").addEventListener("click", () => {
+      if (!lightbox || typeof lightbox.showModal !== "function") {
+        window.open(stageImg.src, "_blank");
+        return;
+      }
+      lightbox.querySelector("img").src = stageImg.src;
+      lightbox.querySelector("img").alt = stageImg.alt;
+      lightbox.querySelector(".lightbox__caption").textContent = caption.textContent;
+      lightbox.showModal();
+    });
+  });
+  if (lightbox) {
+    // A click on the backdrop (outside the image) closes the lightbox.
+    lightbox.addEventListener("click", (e) => { if (e.target === lightbox) lightbox.close(); });
+  }
+
   /* ---------- Software: latest versions and release notes ---------- */
   const SOFT = window.SOFTWARE || {};
   const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
@@ -80,17 +111,19 @@
     return (day ? day + " " : "") + MONTHS[m - 1] + " " + y;
   };
 
-  // Download buttons, version pills and dates come from js/releases.js,
-  // so a new release only needs editing there.
-  document.querySelectorAll("[data-product]").forEach((card) => {
-    const sw = SOFT[card.dataset.product];
-    if (!sw || card.classList.contains("tab")) return;
+  // Download buttons, version pills, dates and manual links come from
+  // js/releases.js, so a new release only needs editing there.
+  const fields = (box, name) => [box, ...box.querySelectorAll('[data-field="' + name + '"]')]
+    .filter((el) => el.dataset.field === name);
+  document.querySelectorAll("[data-product]").forEach((box) => {
+    const sw = SOFT[box.dataset.product];
+    if (!sw || box.classList.contains("tab")) return;
     const L = sw.latest;
-    card.querySelectorAll('[data-field="version"]').forEach((el) => { el.textContent = "v" + L.version; });
-    card.querySelectorAll('[data-field="date"]').forEach((el) => { el.textContent = fmtDate(L.date); });
-    card.querySelectorAll('[data-field="size"]').forEach((el) => { el.textContent = L.size; });
-    card.querySelectorAll('[data-field="file"]').forEach((el) => el.setAttribute("href", L.file));
-    card.querySelectorAll('[data-field="manual"]').forEach((el) => el.setAttribute("href", L.manual));
+    fields(box, "version").forEach((el) => { el.textContent = "v" + L.version; });
+    fields(box, "date").forEach((el) => { el.textContent = fmtDate(L.date); });
+    fields(box, "size").forEach((el) => { el.textContent = L.size; });
+    fields(box, "file").forEach((el) => el.setAttribute("href", L.file));
+    fields(box, "manual").forEach((el) => el.setAttribute("href", L.manual));
   });
 
   const announce = document.getElementById("announce-text");
@@ -144,136 +177,7 @@
     next.focus();
     renderNews(next.dataset.product);
   }));
-  document.querySelectorAll("[data-news]").forEach((a) =>
-    a.addEventListener("click", () => renderNews(a.dataset.news)));
   renderNews("panda");
-
-  /* ---------- Publications ---------- */
-  const PUBS = (window.PUBLICATIONS || []).filter((p) => p.t);
-  const list = document.getElementById("pub-list");
-  const search = document.getElementById("pub-search");
-  const yearsBox = document.getElementById("pub-years");
-  const count = document.getElementById("pub-count");
-  const more = document.getElementById("pub-more");
-  const statPubs = document.getElementById("stat-pubs");
-  const PAGE = 25;
-  const MAX_AUTHORS = 8;
-
-  if (statPubs && PUBS.length) statPubs.textContent = PUBS.length;
-
-  const periods = [
-    { label: "All", test: () => true },
-    { label: "2024 –", test: (y) => y >= 2024 },
-    { label: "2019 – 2023", test: (y) => y >= 2019 && y <= 2023 },
-    { label: "2014 – 2018", test: (y) => y >= 2014 && y <= 2018 },
-    { label: "2009 – 2013", test: (y) => y >= 2009 && y <= 2013 },
-    { label: "– 2008", test: (y) => y <= 2008 },
-  ];
-  let period = 0;
-  let shown = PAGE;
-
-  periods.forEach((p, i) => {
-    const b = document.createElement("button");
-    b.className = "chip";
-    b.type = "button";
-    b.textContent = p.label;
-    b.setAttribute("aria-pressed", String(i === 0));
-    b.addEventListener("click", () => {
-      period = i;
-      shown = PAGE;
-      [...yearsBox.children].forEach((c, j) => c.setAttribute("aria-pressed", String(j === i)));
-      render();
-    });
-    yearsBox.appendChild(b);
-  });
-
-  const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
-  // Titles carry <sub>/<sup>/<i> from Zotero; everything else is escaped.
-  const safeTitle = (s) => esc(s).replace(/&lt;(\/?)(sub|sup|i)&gt;/g, "<$1$2>");
-  const plain = (s) => s.replace(/<[^>]+>/g, "");
-  const norm = (s) => plain(s).normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase();
-
-  PUBS.forEach((p) => {
-    p._hay = norm([p.t, p.a.join(" "), p.j, p.y, p.doi].join(" "));
-  });
-
-  function highlight(html, terms) {
-    if (!terms.length) return html;
-    // Only highlight in text nodes, never inside tags.
-    return html.replace(/(^|>)([^<]+)/g, (m, lead, text) => {
-      let out = text;
-      terms.forEach((t) => {
-        const re = new RegExp("(" + t.replace(/[.*+?^${}()|[\]\\]/g, "\\$&") + ")", "gi");
-        out = out.replace(re, "<mark>$1</mark>");
-      });
-      return lead + out;
-    });
-  }
-
-  function authors(a) {
-    const shortList = a.length > MAX_AUTHORS ? a.slice(0, MAX_AUTHORS - 1) : a;
-    let html = shortList.map((n) => (/fabelo/i.test(n) ? '<span class="me">' + esc(n) + "</span>" : esc(n))).join(", ");
-    if (a.length > MAX_AUTHORS) {
-      const me = a.find((n) => /fabelo/i.test(n));
-      const mine = me && !shortList.includes(me) ? ', …, <span class="me">' + esc(me) + "</span>" : "";
-      html += mine + ", et al.";
-    }
-    return html;
-  }
-
-  function source(p) {
-    let s = "<em>" + esc(p.j) + "</em>";
-    if (p.v) s += " <strong>" + esc(p.v) + "</strong>";
-    if (p.p) s += ", " + esc(p.p);
-    if (p.y) s += " (" + p.y + ")";
-    return s;
-  }
-
-  function render() {
-    const terms = norm(search.value).split(/\s+/).filter(Boolean);
-    const hits = PUBS.filter((p) => periods[period].test(p.y || 0) && terms.every((t) => p._hay.includes(t)));
-    count.textContent = hits.length === PUBS.length
-      ? PUBS.length + " publications"
-      : hits.length + " of " + PUBS.length + " publications";
-
-    if (!hits.length) {
-      list.innerHTML = '<p class="empty">No publications match your search.</p>';
-      more.hidden = true;
-      return;
-    }
-
-    let html = "";
-    let lastYear = null;
-    hits.slice(0, shown).forEach((p) => {
-      if (p.y !== lastYear) {
-        html += '<h4 class="year">' + (p.y || "—") + "</h4>";
-        lastYear = p.y;
-      }
-      const url = p.doi ? "https://doi.org/" + encodeURI(p.doi) : null;
-      const title = highlight(safeTitle(p.t), terms);
-      html +=
-        '<article class="pub">' +
-        '<div class="pub__title">' + (url ? '<a href="' + url + '" target="_blank" rel="noopener">' + title + "</a>" : title) + "</div>" +
-        '<div class="pub__authors">' + highlight(authors(p.a), terms) + "</div>" +
-        '<div class="pub__src">' + highlight(source(p), terms) +
-        (p.doi ? '<span class="pub__doi">doi:' + esc(p.doi) + "</span>" : "") +
-        "</div></article>";
-    });
-    list.innerHTML = html;
-
-    const rest = hits.length - shown;
-    more.hidden = rest <= 0;
-    more.textContent = "Show more (" + Math.max(rest, 0) + " remaining)";
-  }
-
-  let timer;
-  search.addEventListener("input", () => {
-    clearTimeout(timer);
-    timer = setTimeout(() => { shown = PAGE; render(); }, 120);
-  });
-  more.addEventListener("click", () => { shown += PAGE; render(); });
-
-  render();
 
   document.getElementById("year").textContent = new Date().getFullYear();
 })();

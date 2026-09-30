@@ -1,32 +1,21 @@
-# Oscar Fabelo – personal page (ILL)
+# PANDA & Edit_PyCR – ILL diffraction software site
 
-Static site, no build step: open `index.html` in a browser, or copy the whole
-folder to the ILL web server.
+Static site, no build step: open `index.html` in a browser. It is published
+with GitLab Pages from https://code.ill.fr/fabelo/software (see `.gitlab-ci.yml`):
+every push to `main` redeploys it. The zips in `downloads/` are not in git.
 
 ```
 index.html              the page
 css/style.css           styles (ILL palette: navy + #0779AD)
-js/main.js              menu, hero, release notes, publication search/filter
+js/main.js              menu, hero, screenshot galleries, downloads, release notes
 js/releases.js          software versions, download files and release notes
-js/publications.js      publication list, generated from Zotero
-img/                    screenshots and app icons
+img/                    app icons; img/shots/ screenshots taken from the manuals
 downloads/              PANDA and Edit_PyCR packages + user manuals
 tools/publish.py        builds, packages and publishes PANDA / Edit_PyCR
 tools/release_notes.py  turns git commits into release notes (used by publish.py)
-tools/zotero_export.py  regenerates js/publications.js
 ```
 
 ## Updating
-
-**Publications** – add the paper to Zotero, then:
-
-```
-python tools/zotero_export.py
-```
-
-It reads a copy of `~/Zotero/zotero.sqlite`, so Zotero may stay open.
-Everything co-authored by Fabelo with a DOI or journal is kept; errata and
-drafts are skipped. The hero's publication count updates by itself.
 
 **A new PANDA / Edit_PyCR version** – bump the version in the program
 (`src/app/metadata.py` for PANDA, `src/edit_pycr/core/app_version.py` for
@@ -71,4 +60,3 @@ records the commit it was built from). `python tools/release_notes.py panda`
 previews the notes for the commits made since the last zip. The notes are plain JSON in `js/releases.js` and can
 always be corrected by hand (double quotes, no trailing commas).
 
-**Citation metrics** (hero card) are typed by hand from Google Scholar.
