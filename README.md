@@ -23,7 +23,7 @@ Edit_PyCR), commit, and run from this folder:
 
 ```
 python tools/publish.py panda            # or editpycr, or all
-python tools/publish.py all --deploy     # ... and copy the site to the server
+python tools/publish.py all --upload --push   # zip to the package registry + publish the site
 ```
 
 `publish.py` does every step:
@@ -38,8 +38,11 @@ python tools/publish.py all --deploy     # ... and copy the site to the server
    `downloads/<Name>_v<version>_Windows_x64.zip` and copies the user manual;
 4. updates `js/releases.js` and `index.html` (download buttons, "Latest"
    banner, "What's new", cache-busting stamp);
-5. with `--deploy`, copies `index.html`, `css/`, `js/`, `img/` and
-   `downloads/` to the server folder (only files that changed).
+5. with `--upload`, uploads the zip to the package registry of project 1699
+   (code.ill.fr/fabelo/software) and points the download button at it;
+   needs a token with the `api` scope in `GITLAB_TOKEN`;
+6. with `--push`, commits and pushes the site: GitLab Pages redeploys it.
+   (`--deploy DIR` still copies the site to a server folder instead.)
 
 Options: `--pull` (git pull first), `--rebuild` (rebuild and replace the
 package of the version already on the page, notes unchanged),
