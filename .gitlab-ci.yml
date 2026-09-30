@@ -1,5 +1,9 @@
 pages:
   stage: deploy
+  tags:
+    - sci
+    - shell
+    - debian12
   script:
     - mkdir public
     - cp -r index.html css js img downloads public/
