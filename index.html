@@ -1,0 +1,406 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Oscar Fabelo · Institut Laue-Langevin</title>
+  <meta name="description" content="Oscar Fabelo – instrument scientist at the Institut Laue-Langevin (ILL). Single-crystal neutron diffraction, magnetic structures, molecular magnets. Downloads of PANDA and Edit_PyCR.">
+  <meta name="author" content="Oscar Fabelo">
+  <link rel="icon" type="image/png" href="img/panda-icon.png">
+  <link rel="stylesheet" href="css/style.css?v=202609290012">
+</head>
+<body>
+
+  <!-- ILL context bar -->
+  <div class="topbar">
+    <div class="wrap topbar__inner">
+      <a class="topbar__brand" href="https://www.ill.eu/" target="_blank" rel="noopener">
+        <span class="ill-mark">ILL</span>
+        <span class="topbar__txt">Neutrons for Society</span>
+      </a>
+      <nav class="topbar__crumbs" aria-label="Breadcrumb">
+        <a href="https://www.ill.eu/" target="_blank" rel="noopener">ILL</a>
+        <span>›</span>
+        <a href="https://www.ill.eu/for-ill-users/scientific-groups/diffraction/instruments" target="_blank" rel="noopener">Diffraction group</a>
+        <span>›</span>
+        <span aria-current="page">Oscar Fabelo</span>
+      </nav>
+    </div>
+  </div>
+
+  <!-- Main navigation -->
+  <header class="nav" id="top">
+    <div class="wrap nav__inner">
+      <a href="#top" class="nav__name">
+        <span class="monogram" aria-hidden="true">OF</span>
+        <span>Oscar Fabelo</span>
+      </a>
+      <button class="nav__toggle" aria-expanded="false" aria-controls="nav-links" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav__links" id="nav-links">
+        <li><a href="#software">Software</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#research">Research</a></li>
+        <li><a href="#instruments">Instruments</a></li>
+        <li><a href="#publications">Publications</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- Hero -->
+    <section class="hero">
+      <svg class="hero__laue" viewBox="0 0 600 600" aria-hidden="true">
+        <defs>
+          <radialGradient id="spot" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#fff" stop-opacity=".95"/>
+            <stop offset="100%" stop-color="#fff" stop-opacity="0"/>
+          </radialGradient>
+        </defs>
+        <g fill="none" stroke="#fff" stroke-opacity=".08">
+          <circle cx="300" cy="300" r="80"/><circle cx="300" cy="300" r="150"/>
+          <circle cx="300" cy="300" r="220"/><circle cx="300" cy="300" r="290"/>
+        </g>
+        <g id="laue-spots"></g>
+      </svg>
+      <div class="wrap hero__inner">
+        <div class="hero__text">
+          <a class="announce" href="#news" id="announce">
+            <span class="announce__tag">Latest</span>
+            <span id="announce-text">PANDA 1.0.64 · Edit_PyCR 0.3.0</span>
+            <span aria-hidden="true">→</span>
+          </a>
+          <p class="eyebrow">Instrument scientist · Diffraction Group</p>
+          <h1>Oscar Fabelo</h1>
+          <p class="lead">
+            I use neutrons to see where atoms sit and where their magnetic moments point.
+            At the <a href="https://www.ill.eu/" target="_blank" rel="noopener">Institut Laue-Langevin</a> in
+            Grenoble I am responsible for the hot-neutron single-crystal diffractometer
+            <strong>D9</strong>, where I study how structure and magnetism shape the properties of materials.
+          </p>
+          <div class="hero__cta">
+            <a class="btn btn--primary" href="#software">Software downloads</a>
+            <a class="btn btn--ghost" href="#research">Research</a>
+          </div>
+          <ul class="profiles" aria-label="Research profiles">
+            <li><a href="https://orcid.org/0000-0001-6452-8830" target="_blank" rel="noopener">ORCID</a></li>
+            <li><a href="https://scholar.google.com/citations?user=tkkEhJ8AAAAJ" target="_blank" rel="noopener">Google Scholar</a></li>
+            <li><a href="https://www.researchgate.net/scientific-contributions/Oscar-Fabelo-39104805" target="_blank" rel="noopener">ResearchGate</a></li>
+            <li><a href="https://www.scopus.com/authid/detail.uri?authorId=8636377900" target="_blank" rel="noopener">Scopus</a></li>
+          </ul>
+        </div>
+        <aside class="hero__card" aria-label="Key figures">
+          <dl class="stats">
+            <div><dt>Publications</dt><dd id="stat-pubs">170+</dd></div>
+            <div><dt>Citations</dt><dd>4,800+</dd></div>
+            <div><dt>h-index</dt><dd>39</dd></div>
+            <div><dt>At the ILL since</dt><dd>2014</dd></div>
+          </dl>
+          <p class="stats__note">Citation metrics: Google Scholar, September 2026.</p>
+        </aside>
+      </div>
+    </section>
+
+    <!-- Software -->
+    <section class="section section--tint" id="software">
+      <div class="wrap">
+        <div class="software__head">
+          <div>
+            <p class="kicker">Software</p>
+            <h2>Downloads &amp; releases</h2>
+            <p class="section__intro">
+              Free desktop tools for ILL diffraction users. This page always points to the
+              <strong>latest version</strong>; the release notes below list what changed in each
+              version.
+            </p>
+          </div>
+          <ol class="steps" aria-label="How to install">
+            <li><strong>Download</strong> the zip for Windows 64-bit</li>
+            <li><strong>Unzip</strong> it anywhere — no installation, no admin rights</li>
+            <li><strong>Run</strong> <code>PANDA.exe</code> or <code>FullProf_Editor.exe</code></li>
+          </ol>
+        </div>
+
+        <!-- PANDA -->
+        <article class="product" id="panda" data-product="panda">
+          <div class="product__media">
+            <a href="img/panda-main.png" target="_blank" title="Open full-size screenshot"><img src="img/panda-main.png" alt="PANDA main window: list of measured runs on the left and a powder diffraction pattern on the right" loading="lazy" width="1154" height="642"></a>
+          </div>
+          <div class="product__body">
+            <header class="product__head">
+              <img src="img/panda-icon.png" alt="" class="product__logo" width="56" height="56">
+              <div>
+                <h3>PANDA <span class="pill" data-field="version">v1.0.64</span></h3>
+                <p class="product__sub">Powder Analysis for Neutron Diffraction Applications</p>
+              </div>
+            </header>
+            <p>Browse, process and visualise neutron powder-diffraction data straight from the instrument: open a data folder, pick the runs, and go from raw NeXus files to normalised, background-subtracted patterns ready for Rietveld refinement.</p>
+            <ul class="features">
+              <li>Normalise, bin, combine and subtract backgrounds (Chebyshev, SNIP, arPLS…)</li>
+              <li>1D, 2D heat-map and 3D views of temperature or pressure series</li>
+              <li>2D-detector integration with statistical uncertainties</li>
+              <li>Peak fitting and export to <code>.xys</code></li>
+              <li>Built-in <strong>pyPRF</strong> viewer for FullProf Rietveld results</li>
+            </ul>
+            <dl class="meta">
+              <div><dt>Released</dt><dd data-field="date">19 Sep 2026</dd></div>
+              <div><dt>Instruments</dt><dd>D1B, D2B, D16, D20, XtremeD</dd></div>
+              <div><dt>Formats</dt><dd>NeXus, XYSigma, XRDML, GSAS TOF</dd></div>
+              <div><dt>Licence</dt><dd>GPL-3.0</dd></div>
+            </dl>
+            <div class="product__actions">
+              <a class="btn btn--primary" data-field="file" href="downloads/PANDA_v1.0.64_Windows_x64.zip" download>
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11m0 0-4-4m4 4 4-4M5 20h14"/></svg>
+                <span>Download <span data-field="version">v1.0.64</span> <span class="btn__size">(Windows, <span data-field="size">179 MB</span>)</span></span>
+              </a>
+              <a class="btn btn--ghost" data-field="manual" href="downloads/PANDA_User_Manual_v1.0.64.pdf" target="_blank">User manual (PDF)</a>
+              <a class="btn btn--link" href="#news" data-news="panda">What’s new →</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Edit_PyCR -->
+        <article class="product product--reverse" id="edit-pycr" data-product="editpycr">
+          <div class="product__media">
+            <a href="img/edit-pycr-main.png" target="_blank" title="Open full-size screenshot"><img src="img/edit-pycr-main.png" alt="Edit_PyCR main window: structure tree of a FullProf PCR file and the syntax-highlighted editor" loading="lazy" width="1770" height="1080"></a>
+          </div>
+          <div class="product__body">
+            <header class="product__head">
+              <img src="img/edit-pycr-icon.png" alt="" class="product__logo" width="56" height="56">
+              <div>
+                <h3>Edit_PyCR <span class="pill" data-field="version">v0.3.0</span></h3>
+                <p class="product__sub">FullProf PCR editor</p>
+              </div>
+            </header>
+            <p>A dedicated editor for FullProf <code>.pcr</code> refinement files. It understands the file — which numbers are refinement codes, where each phase and pattern begins, what each keyword means — so less time goes into counting columns and more into refining.</p>
+            <ul class="features">
+              <li>Syntax highlighting, folding and a structure outline of phases and patterns</li>
+              <li>Guided dialogs for cell, atoms, profile, background and excluded regions</li>
+              <li>CIF / mCIF → PCR conversion and templates, using FullProf’s own programs</li>
+              <li>Sequential refinements and staged refinement strategies</li>
+              <li>Run FullProf, plot the <code>.prf</code> pattern and follow χ² and R-factors</li>
+            </ul>
+            <dl class="meta">
+              <div><dt>Released</dt><dd data-field="date">23 Sep 2026</dd></div>
+              <div><dt>Status</dt><dd>Early release — feedback welcome</dd></div>
+              <div><dt>Requires</dt><dd>FullProf Suite</dd></div>
+              <div><dt>Platform</dt><dd>Windows 64-bit</dd></div>
+            </dl>
+            <div class="product__actions">
+              <a class="btn btn--primary" data-field="file" href="downloads/Edit_PyCR_v0.3.0_Windows_x64.zip" download>
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11m0 0-4-4m4 4 4-4M5 20h14"/></svg>
+                <span>Download <span data-field="version">v0.3.0</span> <span class="btn__size">(Windows, <span data-field="size">77 MB</span>)</span></span>
+              </a>
+              <a class="btn btn--ghost" data-field="manual" href="downloads/Edit_PyCR_User_Manual_v0.3.0.pdf" target="_blank">User manual (PDF)</a>
+              <a class="btn btn--link" href="#news" data-news="editpycr">What’s new →</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Release notes -->
+        <div class="news" id="news">
+          <div class="news__head">
+            <h3>What’s new</h3>
+            <div class="tabs" role="tablist" aria-label="Release notes">
+              <button class="tab" type="button" role="tab" aria-controls="news-panel" aria-selected="true" data-product="panda">PANDA</button>
+              <button class="tab" type="button" role="tab" aria-controls="news-panel" aria-selected="false" data-product="editpycr">Edit_PyCR</button>
+            </div>
+          </div>
+          <div class="news__panel" id="news-panel" role="tabpanel">
+            <!-- news:start -->
+            <article class="release release--latest"><header><span class="release__v">PANDA 1.0.65</span><time class="release__date">29 Sep 2026</time><a class="release__tag" href="downloads/PANDA_v1.0.65_Windows_x64.zip" download>Latest · download</a></header><ul><li><span class="kind kind--improved">Improved</span><span>Maintenance release.</span></li></ul></article>
+            <article class="release"><header><span class="release__v">PANDA 1.0.64</span><time class="release__date">28 Sep 2026</time></header><ul><li><span class="kind kind--new">New</span><span>Pretreated 1D data in <code>.xy</code> files (2θ and intensity only) can be loaded; uncertainties are estimated as √I, with a minimum of 1 count.</span></li><li><span class="kind kind--new">New</span><span>D2B virtual detector: the save dialog can export the image as XYZS or Origin ASCII (γ, vertical pixel, counts), as the heatmap already could.</span></li><li><span class="kind kind--improved">Improved</span><span><code>.xys</code>, <code>.dat</code> and <code>.xy</code> files: a <code>Wavelength = value</code> header line is read as the wavelength and shown in the Wavelength (Å) column.</span></li><li><span class="kind kind--improved">Improved</span><span>D16 and XtremeD: the uncertainty of each 2θ channel is now the purely statistical (Poisson) error propagated from the detector pixels. Refinements of these data give honest χ² values that reflect how well the model fits. D2B is unchanged.</span></li><li><span class="kind kind--new">New</span><span>The user manual explains how the 2D-detector uncertainties are computed.</span></li></ul></article>
+            <article class="release"><header><span class="release__v">PANDA 1.0.63</span><time class="release__date">2 Aug 2026</time></header><ul><li><span class="kind kind--new">New</span><span>pyPRF: a Q button switches the Rietveld plot between the native axis and Q (Å⁻¹), for both constant-wavelength and time-of-flight data. Bragg ticks, excluded regions and hover values follow.</span></li><li><span class="kind kind--new">New</span><span>The About dialog and the user manual can be opened from the start-up window, before loading any data.</span></li><li><span class="kind kind--new">New</span><span>Background subtraction: a “None” option that only crops the excluded ranges, and an option to remove excluded ranges from the output.</span></li><li><span class="kind kind--improved">Improved</span><span>D16 and XtremeD uncertainties use the error of the mean over the pixels of each 2θ channel instead of their spread, which overestimated them.</span></li></ul></article>
+            <article class="release"><header><span class="release__v">PANDA 1.0.62</span><time class="release__date">1 Aug 2026</time></header><ul><li><span class="kind kind--new">New</span><span>Automatic background subtraction for all selected runs, with seven estimators (Chebyshev — the default —, arPLS, AsLS, SNIP, rolling ball, Bruckner and spline), a live preview and hand-editable anchor points. The corrected patterns are collected in a new workspace.</span></li><li><span class="kind kind--fixed">Fixed</span><span>Font size of the data trees on high-resolution screens.</span></li></ul></article>
+            <!-- news:end -->
+          </div>
+        </div>
+
+        <p class="note">Found a bug or missing a feature? <a href="#contact">Get in touch</a> — user feedback shapes every release.</p>
+      </div>
+    </section>
+
+    <!-- About -->
+    <section class="section" id="about">
+      <div class="wrap grid-2">
+        <div>
+          <p class="kicker">About</p>
+          <h2>Background</h2>
+          <p>
+            My research uses neutron and X-ray diffraction to connect crystal and magnetic structure
+            with physical properties. A large part of it concerns molecule-based and hybrid materials
+            — coordination polymers, metal–organic frameworks and hybrid perovskites — where subtle
+            structural changes such as order–disorder transitions, incommensurate modulations or
+            rearrangements of the hydrogen-bond network switch on ferroelectricity, magnetoelectric
+            coupling or proton conduction.
+          </p>
+          <p>
+            The short wavelength of D9 makes it ideal for accurate structural work: hydrogen positions
+            in minerals and molecular crystals, anharmonic thermal motion, and data to very high
+            momentum transfer. Recent studies include incommensurate magnetic order in formate
+            perovskites, spin spirals in layered perovskites and Weyl semimetals, lattice dynamics in
+            superionic conductors, and crystals followed across wide temperature and pressure ranges.
+          </p>
+          <p>
+            A physicist by training (PhD, Universidad de La Laguna, 2008), I was instrument scientist
+            on the CRG powder diffractometer D1B for ICMA (CSIC – Universidad de Zaragoza) before
+            joining the ILL Diffraction Group in 2014.
+          </p>
+        </div>
+        <ol class="timeline" aria-label="Career">
+          <li>
+            <span class="timeline__date">2014 – today</span>
+            <h3>Institut Laue-Langevin</h3>
+            <p>Instrument scientist, responsible for D9 and DRX.</p>
+          </li>
+          <li>
+            <span class="timeline__date">2009 – 2014</span>
+            <h3>ICMA (CSIC – Univ. Zaragoza)</h3>
+            <p>Instrument scientist, D1B at the ILL.</p>
+          </li>
+          <li>
+            <span class="timeline__date">2008</span>
+            <h3>PhD in Physics, Universidad de La Laguna</h3>
+            <p>Molecule-based magnetic materials.</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- Research -->
+    <section class="section section--tint" id="research">
+      <div class="wrap">
+        <p class="kicker">Research</p>
+        <h2>What I work on</h2>
+        <div class="cards cards--4">
+          <article class="card">
+            <div class="card__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="2"/><circle cx="5" cy="7" r="1.3"/><circle cx="19" cy="7" r="1.3"/><circle cx="5" cy="17" r="1.3"/><circle cx="19" cy="17" r="1.3"/><circle cx="12" cy="4" r="1"/><circle cx="12" cy="20" r="1"/></svg>
+            </div>
+            <h3>Single-crystal neutron diffraction</h3>
+            <p>High-resolution data to large momentum transfer: precise atomic positions, hydrogen bonding, thermal motion and disorder.</p>
+          </article>
+          <article class="card">
+            <div class="card__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M6 18 18 6M14 6h4v4"/><path d="M6 6l4 4M18 18l-4-4"/></svg>
+            </div>
+            <h3>Magnetic structures &amp; multiferroics</h3>
+            <p>Commensurate and incommensurate magnetic order, spin densities and magnetoelectric coupling, with polarised and unpolarised neutrons.</p>
+          </article>
+          <article class="card">
+            <div class="card__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M4 8h16v8H4zM8 8v8M16 8v8M4 12h16"/></svg>
+            </div>
+            <h3>Molecular magnets &amp; MOFs</h3>
+            <p>Coordination polymers, metal–organic frameworks and hybrid perovskites: how the linker and the lattice shape the magnetism.</p>
+          </article>
+          <article class="card">
+            <div class="card__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M12 3v12M9 12a3 3 0 1 0 6 0M5 21h14M8 7h2M8 10h2"/></svg>
+            </div>
+            <h3>Phase transitions under extreme conditions</h3>
+            <p>Thermal expansion, high pressure and structural phase transitions followed with neutron and X-ray diffraction.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Instruments -->
+    <section class="section" id="instruments">
+      <div class="wrap">
+        <p class="kicker">Instruments</p>
+        <h2>Where the data come from</h2>
+        <div class="cards cards--2">
+          <article class="card card--instrument">
+            <span class="badge">Responsible</span>
+            <h3>D9 <small>Hot neutron four-circle diffractometer</small></h3>
+            <p>One of the shortest neutron wavelengths available at any reactor (0.35 – 0.85 Å), a Eulerian cradle and a 2D detector: Bragg intensities to very high momentum transfer, atomic displacements resolved to ~0.001 Å, and access to absorbing elements such as Gd or Sm.</p>
+            <a class="link-arrow" href="https://www.ill.eu/en/for-ill-users/instruments/instruments-list/d9/" target="_blank" rel="noopener">D9 at ill.eu</a>
+          </article>
+          <article class="card card--instrument">
+            <span class="badge">Responsible</span>
+            <h3>DRX <small>X-ray diffraction</small></h3>
+            <p>X-ray diffraction support for the Diffraction Group and its users: sample screening and characterisation before and alongside the neutron experiment.</p>
+            <a class="link-arrow" href="https://www.ill.eu/about-the-ill/contacts/instrument-responsibles" target="_blank" rel="noopener">Instrument responsibles</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Publications -->
+    <section class="section" id="publications">
+      <div class="wrap">
+        <p class="kicker">Publications</p>
+        <h2>Papers</h2>
+
+        <h3 class="subhead">Most cited</h3>
+        <ol class="highlights">
+          <li>
+            <a href="https://doi.org/10.1021/ja206917z" target="_blank" rel="noopener">High proton conduction in a chiral ferromagnetic metal–organic quartz-like framework</a>
+            <span>J. Am. Chem. Soc. 133, 15328 (2011)</span>
+          </li>
+          <li>
+            <a href="https://doi.org/10.1038/s41563-023-01560-x" target="_blank" rel="noopener">Extreme phonon anharmonicity underpins superionic diffusion and ultralow thermal conductivity in argyrodite Ag<sub>8</sub>SnSe<sub>6</sub></a>
+            <span>Nature Materials 22, 999 (2023)</span>
+          </li>
+          <li>
+            <a href="https://doi.org/10.1021/ja3082457" target="_blank" rel="noopener">The role of order–disorder transitions in the quest for molecular multiferroics</a>
+            <span>J. Am. Chem. Soc. 134, 19772 (2012)</span>
+          </li>
+          <li>
+            <a href="https://doi.org/10.1002/anie.201501691" target="_blank" rel="noopener">Postsynthetic improvement of the physical properties in a metal–organic framework through a single crystal to single crystal transmetallation</a>
+            <span>Angew. Chem. Int. Ed. 54, 6521 (2015)</span>
+          </li>
+        </ol>
+
+        <h3 class="subhead">All publications</h3>
+        <div class="pubtools">
+          <label class="search">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6"/><path d="m20 20-4.5-4.5"/></svg>
+            <input type="search" id="pub-search" placeholder="Search title, author, journal…" aria-label="Search publications">
+          </label>
+          <div class="chips" id="pub-years" role="group" aria-label="Filter by period"></div>
+        </div>
+        <p class="pubcount" id="pub-count" aria-live="polite"></p>
+        <div id="pub-list" class="publist"></div>
+        <button class="btn btn--ghost btn--block" id="pub-more" hidden>Show more</button>
+        <noscript><p>The list needs JavaScript. See the full list on <a href="https://orcid.org/0000-0001-6452-8830">ORCID</a>.</p></noscript>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section class="section section--dark" id="contact">
+      <div class="wrap grid-2">
+        <div>
+          <p class="kicker kicker--light">Contact</p>
+          <h2>Get in touch</h2>
+          <p>Questions about an experiment on D9 or a proposal, or bug reports and feature requests for PANDA and Edit_PyCR — all welcome.</p>
+          <a class="btn btn--light" href="mailto:fabelo@ill.fr">fabelo@ill.fr</a>
+        </div>
+        <address class="contact">
+          <p><strong>Institut Laue-Langevin</strong><br>
+            Diffraction Group<br>
+            71 avenue des Martyrs, CS 20156<br>
+            38042 Grenoble Cedex 9, France</p>
+          <p>Tel. <a href="tel:+33476207629">+33 (0)4 76 20 76 29</a></p>
+        </address>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <div class="wrap footer__inner">
+      <p>© <span id="year">2026</span> Oscar Fabelo · Institut Laue-Langevin</p>
+      <a href="#top">Back to top ↑</a>
+    </div>
+  </footer>
+
+  <script src="js/releases.js?v=202609290012"></script>
+  <script src="js/publications.js?v=202609290012"></script>
+  <script src="js/main.js?v=202609290012"></script>
+</body>
+</html>
