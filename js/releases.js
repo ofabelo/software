@@ -158,13 +158,33 @@ window.SOFTWARE = {
     "repo": "../Edit_PyCR",
     "version_file": "src/edit_pycr/core/app_version.py",
     "latest": {
-      "version": "0.4.0",
-      "date": "2026-09-29",
-      "file": "https://code.ill.fr/api/v4/projects/1699/packages/generic/editpycr/0.4.0/Edit_PyCR_v0.4.0_Windows_x64.zip",
-      "size": "76 MB",
-      "manual": "downloads/Edit_PyCR_User_Manual_v0.4.0.pdf"
+      "version": "0.4.1",
+      "date": "2026-10-03",
+      "file": "https://code.ill.fr/api/v4/projects/1699/packages/generic/editpycr/0.4.1/Edit_PyCR_v0.4.1_Windows_x64.zip",
+      "size": "69 MB",
+      "manual": "downloads/Edit_PyCR_User_Manual_v0.4.1.pdf"
     },
     "releases": [
+      {
+        "version": "0.4.1",
+        "date": "2026-10-03",
+        "commit": "04af43d",
+        "notes": [
+          {"type": "new", "text": "Simulated-annealing files (Cry=3) now support linear constraints, which FullProf reads from NLI in that mode. The tree shows a “Linear constraints (simulated annealing)” section with remove and update-NLI actions, the linear-restraints editor switches to constraints on its own, and the tree warns about restraints left in a Cry=3 file."},
+          {"type": "new", "text": "The tree now warns about refined background points inside excluded regions, which have no data to be refined against, and right-click “Fix the points in excluded regions” fixes them. The Strategy window no longer offers these points for refinement."},
+          {"type": "new", "text": "“Set data file...” now recognises the data file's format and sets Ins to match. If it cannot tell the format, Ins is left for you to set."},
+          {"type": "improved", "text": "During a run, the refining window now checks the <code>.plt</code> file every 250 ms, so the live pattern no longer shows each cycle one cycle late."},
+          {"type": "new", "text": "The refinement history has a new “Chi2 (simulated annealing)” tab showing the best-configuration cost of simulated-annealing runs, which until now drew nothing in the history."},
+          {"type": "fixed", "text": "Excluded regions drawn in the Pattern panel's graphical editor now replace the “0.00 0.00” placeholders written by the CIF to PCR conversion, instead of being added next to them."},
+          {"type": "fixed", "text": "After a Parallel run of candidate files, running the main <code>.pcr</code> on its own no longer shows another file's pattern in the live view."},
+          {"type": "fixed", "text": "The raw pattern shown before any refinement is now read with the Ins currently in the file and is re-read when you change Ins, the data file or Job. If the format cannot read the file, nothing is shown instead of the old curve."},
+          {"type": "fixed", "text": "In dark mode, the split view no longer shows a white bar between the two views or a white square in the corner of each editor, and the window background no longer switches back to the previous theme."},
+          {"type": "improved", "text": "Every window opened from the Create menu now has minimize and maximize buttons, and minimizing one also minimizes the editor so it isn't left blocked."},
+          {"type": "improved", "text": "In the editor, the file header from the “! Files =>” line onwards can now be folded."},
+          {"type": "improved", "text": "View > Move to Other View (Ctrl+Shift+M) is now enabled only when more than one file is open across both views."},
+          {"type": "fixed", "text": "The Linux build can now be copied to FAT32 or exFAT drives, which used to fail."}
+        ]
+      },
       {
         "version": "0.4.0",
         "date": "2026-09-29",
