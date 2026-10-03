@@ -1,0 +1,7 @@
+--------------------------------------------------
+FullProf software
+--------------------------------------------------
+
+Copyright 2019, Juan Rodriguez Carvajal, Institut Laue-Langevin All rights reserved
+
+Authors: Juan Rodriguez-Carvajal (ILL)

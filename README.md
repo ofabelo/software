@@ -1,7 +1,10 @@
 # PANDA & Edit_PyCR – ILL diffraction software site
 
 Static site, no build step: open `index.html` in a browser. It is published
-with GitLab Pages from https://code.ill.fr/fabelo/software (see `.gitlab-ci.yml`):
+at https://superchicha.github.io/software/ with GitHub Pages from
+https://github.com/superchicha/software (remote `github`, see
+`.github/workflows/pages.yml`) and with GitLab Pages from
+https://code.ill.fr/fabelo/software (remote `origin`, see `.gitlab-ci.yml`):
 every push to `main` redeploys it. The zips in `downloads/` are not in git.
 
 ```
@@ -13,6 +16,8 @@ img/                    app icons; img/shots/ screenshots taken from the manuals
 downloads/              PANDA and Edit_PyCR packages + user manuals
 tools/publish.py        builds, packages and publishes PANDA / Edit_PyCR
 tools/release_notes.py  turns git commits into release notes (used by publish.py)
+tools/licenses/         license texts the wheels don't carry (LGPL/GPL for Qt,
+                        CrysFML and FullProf for Edit_PyCR's conversion DLL)
 ```
 
 ## Updating
@@ -36,12 +41,16 @@ python tools/publish.py all --upload --push   # zip to the package registry + pu
    (`fullprof_editor_onedir.spec`); the log goes to `tools/logs/`;
 3. zips `dist/PANDA` or `dist/FullProf_Editor` into
    `downloads/<Name>_v<version>_Windows_x64.zip` and copies the user manual;
+   the zip gets a `THIRD_PARTY_LICENSES/` folder with the license texts of
+   every library bundled in it (read from the installed wheels) and a
+   README listing them;
 4. updates `js/releases.js` and `index.html` (download buttons, "Latest"
    banner, "What's new", cache-busting stamp);
 5. with `--upload`, uploads the zip to the package registry of project 1699
    (code.ill.fr/fabelo/software) and points the download button at it;
    needs a token with the `api` scope in `GITLAB_TOKEN`;
-6. with `--push`, commits and pushes the site: GitLab Pages redeploys it.
+6. with `--push`, commits and pushes the site to every remote (GitHub and
+   code.ill.fr): their Pages redeploy it.
    (`--deploy DIR` still copies the site to a server folder instead.)
 
 Options: `--pull` (git pull first), `--rebuild` (rebuild and replace the

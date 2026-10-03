@@ -4,13 +4,15 @@ For each program:
   1. (optional) git pull
   2. reads the version from the repository
   3. builds it with PyInstaller (its own onedir .spec)
-  4. zips dist/<program>/ into downloads/<Name>_v<version>_Windows_x64.zip
+  4. zips dist/<program>/ into downloads/<Name>_v<version>_Windows_x64.zip,
+     adding THIRD_PARTY_LICENSES/ (license texts of everything bundled)
   5. copies the user manual into downloads/
   6. writes the release notes from the commits since the last release
      (Claude, see release_notes.py) and updates js/releases.js + index.html
   7. (optional) uploads the zip to the GitLab package registry of
      code.ill.fr/fabelo/software and links the page to it (--upload)
-  8. (optional) commits and pushes the site, which redeploys GitLab Pages (--push)
+  8. (optional) commits and pushes the site to every git remote (code.ill.fr
+     and GitHub), which redeploys their Pages (--push)
   9. (optional) copies the web folder to a server folder (--deploy)
 
 USUAL COMMAND - update everything to the latest code
@@ -53,7 +55,7 @@ Options:
                      download button point there. On a program whose version did
                      not change, uploads the zip already on the page if it is
                      still a local file.
-    --push           git commit + push the site (GitLab Pages redeploys it)
+    --push           git commit + push the site to every remote (Pages redeploys it)
     --deploy [DIR]   copy the site to DIR (default: "deploy_dir" in
                      tools/deploy.json, or the WEB_DEPLOY_DIR variable)
     --dry-run        show what would happen, change nothing
@@ -103,8 +105,24 @@ BUILD = {
         # the manual bundled with the app; the LaTeX output as a fallback
         "manuals": ["src/edit_pycr/resources/manual/FullProf_Editor_Manual.pdf",
                     "docs/manual/main.pdf"],
+        # resources/tools/edit_pycr_conv.dll links CrysFML and FullProf's
+        # FullPLib statically (fortran_codes/build.bat); the .pcr templates
+        # are FullProf's examples
+        "components": [
+            ("CrysFML", "LGPL-3.0-or-later (no military use)",
+             "edit_pycr_conv.dll (statically linked)", ["CrysFML-LICENSE.txt"]),
+            ("FullProf library (FullPLib) and example .pcr files",
+             "Copyright J. Rodriguez-Carvajal, ILL - all rights reserved",
+             "edit_pycr_conv.dll, templates/", ["FullProf-LICENSE.txt"]),
+            ("Intel Fortran runtime", "Intel redistributable",
+             "edit_pycr_conv.dll (statically linked)", []),
+        ],
     },
 }
+
+# License texts the wheels don't carry (PySide6 ships only its commercial one).
+LICENSES = WEB / "tools" / "licenses"
+LICENSE_FILE = re.compile(r"LICEN[CS]E|COPYING|NOTICE|AUTHORS", re.I)
 
 # GitLab project that hosts the site and, in its package registry, the zips.
 GITLAB = "https://code.ill.fr"
@@ -146,6 +164,104 @@ def build(key, repo, cfg, version, dry):
     print(f"   built in {time.time() - t0:.0f} s")
 
 
+def dist_license(dist):
+    meta = dist.metadata
+    text = meta.get("License-Expression") or meta.get("License") or ""
+    if text and "\n" not in text.strip() and len(text) < 80:
+        return text.strip()
+    classifiers = [c.split("::")[-1].strip() for c in meta.get_all("Classifier") or []
+                   if c.startswith("License ::")]
+    return "; ".join(classifiers) or "see license files"
+
+
+def third_party_licenses(src, name, cfg):
+    """{path in the zip: bytes} for THIRD_PARTY_LICENSES/: the license files of
+    every Python distribution bundled in dist/<program>/_internal, of Python
+    itself and of the PyInstaller bootloader, plus a README listing them.
+
+    The metadata comes from this interpreter, which is the one that runs
+    PyInstaller in build(), so the versions are the ones in the zip."""
+    import importlib.metadata as md
+    top = md.packages_distributions()
+    internal = src / "_internal"
+    names = set()
+    for p in internal.iterdir() if internal.is_dir() else []:
+        stem = p.name.split("-")[0] if p.name.endswith(".dist-info") else p.name
+        stem = stem.removesuffix(".libs").split(".")[0]
+        names.update(top.get(stem, []))
+    names.add("pyinstaller")
+
+    out, rows, seen = {}, [], set()
+    root = "THIRD_PARTY_LICENSES"
+    for dname in sorted(names, key=str.lower):
+        try:
+            dist = md.distribution(dname)
+        except md.PackageNotFoundError:
+            continue
+        key = dist.metadata["Name"].lower().replace("_", "-")
+        if key in seen:
+            continue
+        seen.add(key)
+        folder = f"{root}/{dist.metadata['Name']}-{dist.version}"
+        found = 0
+        for f in dist.files or []:
+            parts = Path(str(f)).parts
+            if not parts[0].endswith(".dist-info") or not LICENSE_FILE.search(f.name) \
+                    or "Qt-Commercial" in f.name:
+                continue
+            out[f"{folder}/{'/'.join(parts[1:])}"] = Path(f.locate()).read_bytes()
+            found += 1
+        if key in ("pyside6", "shiboken6"):
+            for t in ("LGPL-3.0.txt", "GPL-3.0.txt"):
+                out[f"{folder}/{t}"] = (LICENSES / t).read_bytes()
+            found += 2
+        elif key in ("pyside6-essentials", "pyside6-addons"):
+            found = 1  # the Qt libraries of PySide6: its license texts cover them
+        if not found:
+            print(f"   WARNING: no license file in the {dist.metadata['Name']} wheel")
+        where = "PyInstaller bootloader (the .exe)" if key == "pyinstaller" else "_internal/"
+        rows.append((dist.metadata["Name"], dist.version, dist_license(dist), where))
+
+    python_license = Path(sys.base_prefix) / "LICENSE.txt"
+    if python_license.exists():
+        out[f"{root}/Python-{sys.version.split()[0]}/LICENSE.txt"] = python_license.read_bytes()
+    rows.append(("Python", sys.version.split()[0], "PSF-2.0 (+ OpenSSL, libffi, zlib...)",
+                 "_internal/python3*.dll"))
+    rows.append(("Microsoft Visual C++ runtime", "", "Microsoft redistributable",
+                 "_internal/VCRUNTIME140*.dll, MSVCP140*.dll, ucrtbase.dll"))
+    for comp, lic, where, files in cfg.get("components", []):
+        folder = f"{root}/{comp.split(' (')[0].split(' and ')[0].replace(' ', '_')}"
+        for t in files:
+            out[f"{folder}/{t}"] = (LICENSES / t).read_bytes()
+        rows.append((comp, "", lic, where))
+
+    # name + version, license; where it is on a second line, unless in _internal/
+    w = max(len(f"{r[0]} {r[1]}") for r in rows if r[1]) + 2
+
+    def line(r):
+        head = f"{r[0]} {r[1]}".strip()
+        head = f"{head:<{w}}" if len(head) < w else f"{head}\n{'':<{w}}"
+        return head + r[2] + ("" if r[3] == "_internal/" else f"\n{'':<{w}}in {r[3]}")
+    table = "\n".join(line(r) for r in rows)
+    out[f"{root}/README.txt"] = f"""\
+Third-party software in {name}
+{'=' * (23 + len(name))}
+
+{name} is distributed as a program built with PyInstaller. It contains the
+components below; each folder here holds their license texts.
+
+{table}
+
+Qt for Python (PySide6, shiboken6) and Qt are used under the GNU LGPL v3.
+Their libraries are the separate files in _internal/PySide6/ and
+_internal/shiboken6/ and can be replaced with other builds of the same
+version. Their source code is at https://code.qt.io and
+https://download.qt.io/official_releases/QtForPython/.
+""".replace("\n", "\r\n").encode("utf-8")
+    print(f"   THIRD_PARTY_LICENSES: {len(rows)} components, {len(out)} files")
+    return out
+
+
 def package(repo, cfg, name, version, dry, will_build=False):
     """Zip dist/<program>/ (with its top folder) into downloads/."""
     src = repo / cfg["dist"]
@@ -159,13 +275,18 @@ def package(repo, cfg, name, version, dry, will_build=False):
     dest = WEB / rel
     print(f"   {src} -> {rel}")
     if dry:
+        if (src / "_internal").is_dir():
+            third_party_licenses(src, name, cfg)
         return rel
+    licenses = third_party_licenses(src, name, cfg)
     DOWNLOADS.mkdir(exist_ok=True)
     tmp = dest.with_suffix(".zip.part")
     with zipfile.ZipFile(tmp, "w", zipfile.ZIP_DEFLATED, compresslevel=6) as z:
         for p in sorted(src.rglob("*")):
             if p.is_file():
                 z.write(p, Path(src.name) / p.relative_to(src))
+        for arc, data in licenses.items():
+            z.writestr(f"{src.name}/{arc}", data)
     tmp.replace(dest)
     print(f"   {rn.file_size(dest)}")
     return rel
@@ -248,22 +369,28 @@ def upload(key, version, rel, dry):
 
 
 def push(published, dry):
-    """Commit and push the site; GitLab Pages redeploys it."""
+    """Commit the site and push it to every remote (code.ill.fr and GitHub);
+    each one's Pages redeploys it."""
     step("Committing and pushing the site")
     if not (WEB / ".git").exists():
         sys.exit(f"{WEB} is not a git repository.")
     changed = rn.git(WEB, "status", "--porcelain").strip()
-    if not changed:
+    if changed:
+        print("   " + "\n   ".join(changed.splitlines()))
+        msg = "Publish " + ", ".join(published) if published else "Update the site"
+        print(f"   commit: {msg}")
+    else:
         print("   nothing to commit")
-        return
-    print("   " + "\n   ".join(changed.splitlines()))
-    msg = "Publish " + ", ".join(published) if published else "Update the site"
-    print(f"   commit: {msg}")
+    remotes = rn.git(WEB, "remote").split()
+    print(f"   push to: {', '.join(remotes)}")
     if dry:
         return
-    rn.git(WEB, "add", "-A")
-    rn.git(WEB, "commit", "-m", msg)
-    rn.git(WEB, "push")
+    if changed:
+        rn.git(WEB, "add", "-A")
+        rn.git(WEB, "commit", "-m", msg)
+    # Push even with nothing new to commit, so a remote left behind catches up.
+    for remote in remotes:
+        rn.git(WEB, "push", remote, "HEAD")
     print("   pushed - the site is redeployed in about a minute")
 
 
@@ -429,7 +556,7 @@ def main():
         deploy(deploy_target(a.deploy), a.dry_run)
     if not (a.push or a.deploy):
         print("\nDone. Open index.html to check, then publish with --push "
-              "(git push to code.ill.fr) or --deploy DIR.")
+              "(git push to code.ill.fr and GitHub) or --deploy DIR.")
 
 
 if __name__ == "__main__":
