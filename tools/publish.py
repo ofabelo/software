@@ -11,8 +11,8 @@ For each program:
      (Claude, see release_notes.py) and updates js/releases.js + index.html
   7. (optional) uploads the zip to the GitLab package registry of
      code.ill.fr/fabelo/software and links the page to it (--upload)
-  8. (optional) commits and pushes the site to every git remote (code.ill.fr
-     and GitHub), which redeploys their Pages (--push)
+  8. (optional) commits and pushes the site to GitHub, which redeploys
+     GitHub Pages (--push)
   9. (optional) copies the web folder to a server folder (--deploy)
 
 USUAL COMMAND - update everything to the latest code
@@ -55,7 +55,7 @@ Options:
                      download button point there. On a program whose version did
                      not change, uploads the zip already on the page if it is
                      still a local file.
-    --push           git commit + push the site to every remote (Pages redeploys it)
+    --push           git commit + push the site to GitHub (Pages redeploys it)
     --deploy [DIR]   copy the site to DIR (default: "deploy_dir" in
                      tools/deploy.json, or the WEB_DEPLOY_DIR variable)
     --dry-run        show what would happen, change nothing
@@ -126,6 +126,7 @@ LICENSE_FILE = re.compile(r"LICEN[CS]E|COPYING|NOTICE|AUTHORS", re.I)
 
 # GitLab project that hosts the site and, in its package registry, the zips.
 GITLAB = "https://code.ill.fr"
+PAGES_REMOTE = "github"  # the site is pushed here only (not to code.ill.fr)
 PROJECT_ID = 1699  # fabelo/software
 
 # Files of the site that go to the server (tools/, logs and README stay here).
@@ -369,8 +370,7 @@ def upload(key, version, rel, dry):
 
 
 def push(published, dry):
-    """Commit the site and push it to every remote (code.ill.fr and GitHub);
-    each one's Pages redeploys it."""
+    """Commit the site and push it to GitHub; GitHub Pages redeploys it."""
     step("Committing and pushing the site")
     if not (WEB / ".git").exists():
         sys.exit(f"{WEB} is not a git repository.")
@@ -381,7 +381,7 @@ def push(published, dry):
         print(f"   commit: {msg}")
     else:
         print("   nothing to commit")
-    remotes = rn.git(WEB, "remote").split()
+    remotes = [PAGES_REMOTE]
     print(f"   push to: {', '.join(remotes)}")
     if dry:
         return
@@ -556,7 +556,7 @@ def main():
         deploy(deploy_target(a.deploy), a.dry_run)
     if not (a.push or a.deploy):
         print("\nDone. Open index.html to check, then publish with --push "
-              "(git push to code.ill.fr and GitHub) or --deploy DIR.")
+              "(git push to GitHub) or --deploy DIR.")
 
 
 if __name__ == "__main__":

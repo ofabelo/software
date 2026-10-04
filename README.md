@@ -3,9 +3,9 @@
 Static site, no build step: open `index.html` in a browser. It is published
 at https://superchicha.github.io/software/ with GitHub Pages from
 https://github.com/superchicha/software (remote `github`, see
-`.github/workflows/pages.yml`) and with GitLab Pages from
-https://code.ill.fr/fabelo/software (remote `origin`, see `.gitlab-ci.yml`):
-every push to `main` redeploys it. The zips in `downloads/` are not in git.
+`.github/workflows/pages.yml`): every push to `main` redeploys it. The copy
+at https://code.ill.fr/fabelo/software (remote `origin`, `.gitlab-ci.yml`)
+is only kept for the package registry that holds the zips. The zips in `downloads/` are not in git.
 
 ```
 index.html              the page
@@ -49,8 +49,8 @@ python tools/publish.py all --upload --push   # zip to the package registry + pu
 5. with `--upload`, uploads the zip to the package registry of project 1699
    (code.ill.fr/fabelo/software) and points the download button at it;
    needs a token with the `api` scope in `GITLAB_TOKEN`;
-6. with `--push`, commits and pushes the site to every remote (GitHub and
-   code.ill.fr): their Pages redeploy it.
+6. with `--push`, commits and pushes the site to GitHub: GitHub Pages
+   redeploys it.
    (`--deploy DIR` still copies the site to a server folder instead.)
 
 Options: `--pull` (git pull first), `--rebuild` (rebuild and replace the
