@@ -1,8 +1,8 @@
 # PANDA & Edit_PyCR – diffraction software site
 
 Static site, no build step: open `index.html` in a browser. It is published
-at https://superchicha.github.io/software/ with GitHub Pages from
-https://github.com/superchicha/software (remote `github`, see
+at https://ofabelo.github.io/software/ with GitHub Pages from
+https://github.com/ofabelo/software (remote `github`, see
 `.github/workflows/pages.yml`): every push to `main` redeploys it. The copy
 at https://code.ill.fr/fabelo/software (remote `origin`, `.gitlab-ci.yml`)
 is only kept for the package registry that holds the zips. The zips in `downloads/` are not in git.
