@@ -1,4 +1,4 @@
-# PANDA & Edit_PyCR – ILL diffraction software site
+# PANDA & Edit_PyCR – diffraction software site
 
 Static site, no build step: open `index.html` in a browser. It is published
 at https://superchicha.github.io/software/ with GitHub Pages from
@@ -9,7 +9,7 @@ every push to `main` redeploys it. The zips in `downloads/` are not in git.
 
 ```
 index.html              the page
-css/style.css           styles (ILL palette: navy + #0779AD)
+css/style.css           styles (navy + #0779AD)
 js/main.js              menu, hero, screenshot galleries, downloads, release notes
 js/releases.js          software versions, download files and release notes
 img/                    app icons; img/shots/ screenshots taken from the manuals

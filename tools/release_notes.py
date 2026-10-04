@@ -121,7 +121,7 @@ def commits_since(repo, start):
 # ---------------------------------------------------------------- Claude
 
 SYSTEM = """You write the release notes shown on the download page of a scientific \
-desktop program used by neutron-diffraction scientists at the Institut Laue-Langevin.
+desktop program used by neutron-diffraction scientists.
 
 You receive the git commits made since the last release. Turn them into notes for \
 USERS of the program:

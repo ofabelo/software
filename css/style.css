@@ -1,13 +1,13 @@
 /* ==========================================================================
-   PANDA & Edit_PyCR – ILL diffraction software
-   Palette follows the ILL website: white pages, navy, ILL blue accent.
+   PANDA & Edit_PyCR – diffraction software
+   Palette: white pages, navy, blue accent.
    PANDA sections use the blue/cyan accent, Edit_PyCR a warm amber one.
    ========================================================================== */
 
 :root {
   --navy: #0b2a4a;
   --navy-2: #123a63;
-  --blue: #0779ad;         /* ILL link blue */
+  --blue: #0779ad;         /* link blue */
   --blue-dark: #055c85;
   --cyan: #3fc1e6;
   --amber: #d98a1c;        /* Edit_PyCR accent */
@@ -54,19 +54,6 @@ p { margin: 0 0 1em; }
 
 .wrap { width: 100%; max-width: var(--wrap); margin: 0 auto; padding: 0 24px; }
 @media (max-width: 600px) { .wrap { padding: 0 16px; } }
-
-/* ---------- ILL top bar ---------- */
-.topbar { background: var(--tint); border-bottom: 1px solid var(--line); font-size: .82rem; }
-.topbar__inner { display: flex; align-items: center; justify-content: space-between; gap: 16px; min-height: 40px; }
-.topbar__brand { display: flex; align-items: center; gap: 10px; color: var(--navy); text-decoration: none; font-weight: 600; }
-.ill-mark {
-  display: inline-grid; place-items: center; height: 24px; padding: 0 7px;
-  background: var(--navy); color: #fff; font-weight: 800; letter-spacing: .06em; font-size: .78rem; border-radius: 3px;
-}
-.topbar__crumbs { display: flex; gap: 8px; color: var(--muted); flex-wrap: wrap; }
-.topbar__crumbs a { color: var(--muted); text-decoration: none; }
-.topbar__crumbs a:hover { color: var(--blue); }
-@media (max-width: 640px) { .topbar__crumbs { display: none; } }
 
 /* ---------- Navigation ---------- */
 .nav {
