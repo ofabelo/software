@@ -6,6 +6,10 @@
 // (see README.md). It can also be edited by hand: the part after
 // "window.SOFTWARE =" must stay valid JSON (double quotes, no trailing commas).
 //
+// The programs read this file too: Help > About in Edit_PyCR compares its own
+// version with ["editpycr"]["latest"]["version"] here (core/update_check.py).
+// Keep those key names and the JSON shape as they are.
+//
 // Note types: "new", "improved", "fixed".
 // "commit" is the commit each zip was built from: the notes of a release
 // describe exactly what is inside its zip.

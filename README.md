@@ -20,6 +20,15 @@ tools/licenses/         license texts the wheels don't carry (LGPL/GPL for Qt,
                         CrysFML and FullProf for Edit_PyCR's conversion DLL)
 ```
 
+## Programs that read this site
+
+Help > About in Edit_PyCR downloads `js/releases.js` and compares its own
+version with `editpycr.latest.version`; if the page has a newer one, About
+says so and links to `#edit-pycr`. `publish.py` keeps that file current, so
+nothing extra has to be done at release time. What must not change: the file's
+location, its JSON shape, the `editpycr` key (a program is added the same way,
+with its own key) and the `edit-pycr` anchor in `index.html`.
+
 ## Updating
 
 **A new PANDA / Edit_PyCR version** – bump the version in the program
