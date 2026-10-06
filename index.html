@@ -7,7 +7,7 @@
   <meta name="description" content="Free desktop tools for neutron diffraction users: PANDA for browsing, reducing and exporting powder data, and Edit_PyCR for building and running FullProf refinements.">
   <meta name="author" content="Oscar Fabelo">
   <link rel="icon" type="image/png" href="img/panda-icon.png">
-  <link rel="stylesheet" href="css/style.css?v=202610041200">
+  <link rel="stylesheet" href="css/style.css?v=202610061852">
 </head>
 <body>
 
@@ -552,10 +552,10 @@
           </div>
           <div class="news__panel" id="news-panel" role="tabpanel">
             <!-- news:start -->
-            <article class="release release--latest"><header><span class="release__v">PANDA 1.0.65</span><time class="release__date">29 Sep 2026</time><a class="release__tag" href="https://code.ill.fr/api/v4/projects/1699/packages/generic/panda/1.0.65/PANDA_v1.0.65_Windows_x64.zip" download>Latest · download</a></header><ul><li><span class="kind kind--improved">Improved</span><span>Maintenance release.</span></li></ul></article>
+            <article class="release release--latest"><header><span class="release__v">PANDA 1.0.66</span><time class="release__date">6 Oct 2026</time><a class="release__tag" href="https://code.ill.fr/api/v4/projects/1699/packages/generic/panda/1.0.66/PANDA_v1.0.66_Windows_x64.zip" download>Latest · download</a></header><ul><li><span class="kind kind--fixed">Fixed</span><span>D20: scans stopped before the end no longer include unmeasured steps. Previously the zero-filled steps at the end of the file (2θ=0, monitor=0) diluted the pattern and, with binning, produced an even/odd bin zigzag.</span></li></ul></article>
+            <article class="release"><header><span class="release__v">PANDA 1.0.65</span><time class="release__date">29 Sep 2026</time></header><ul><li><span class="kind kind--improved">Improved</span><span>Maintenance release.</span></li></ul></article>
             <article class="release"><header><span class="release__v">PANDA 1.0.64</span><time class="release__date">28 Sep 2026</time></header><ul><li><span class="kind kind--new">New</span><span>Pretreated 1D data in <code>.xy</code> files (2θ and intensity only) can be loaded; uncertainties are estimated as √I, with a minimum of 1 count.</span></li><li><span class="kind kind--new">New</span><span>D2B virtual detector: the save dialog can export the image as XYZS or Origin ASCII (γ, vertical pixel, counts), as the heatmap already could.</span></li><li><span class="kind kind--improved">Improved</span><span><code>.xys</code>, <code>.dat</code> and <code>.xy</code> files: a <code>Wavelength = value</code> header line is read as the wavelength and shown in the Wavelength (Å) column.</span></li><li><span class="kind kind--improved">Improved</span><span>D16 and XtremeD: the uncertainty of each 2θ channel is now the purely statistical (Poisson) error propagated from the detector pixels. Refinements of these data give honest χ² values that reflect how well the model fits. D2B is unchanged.</span></li><li><span class="kind kind--new">New</span><span>The user manual explains how the 2D-detector uncertainties are computed.</span></li></ul></article>
             <article class="release"><header><span class="release__v">PANDA 1.0.63</span><time class="release__date">2 Aug 2026</time></header><ul><li><span class="kind kind--new">New</span><span>pyPRF: a Q button switches the Rietveld plot between the native axis and Q (Å⁻¹), for both constant-wavelength and time-of-flight data. Bragg ticks, excluded regions and hover values follow.</span></li><li><span class="kind kind--new">New</span><span>The About dialog and the user manual can be opened from the start-up window, before loading any data.</span></li><li><span class="kind kind--new">New</span><span>Background subtraction: a “None” option that only crops the excluded ranges, and an option to remove excluded ranges from the output.</span></li><li><span class="kind kind--improved">Improved</span><span>D16 and XtremeD uncertainties use the error of the mean over the pixels of each 2θ channel instead of their spread, which overestimated them.</span></li></ul></article>
-            <article class="release"><header><span class="release__v">PANDA 1.0.62</span><time class="release__date">1 Aug 2026</time></header><ul><li><span class="kind kind--new">New</span><span>Automatic background subtraction for all selected runs, with seven estimators (Chebyshev — the default —, arPLS, AsLS, SNIP, rolling ball, Bruckner and spline), a live preview and hand-editable anchor points. The corrected patterns are collected in a new workspace.</span></li><li><span class="kind kind--fixed">Fixed</span><span>Font size of the data trees on high-resolution screens.</span></li></ul></article>
             <!-- news:end -->
           </div>
         </div>
@@ -602,7 +602,7 @@
     <p class="lightbox__caption"></p>
   </dialog>
 
-  <script src="js/releases.js?v=202610032148"></script>
-  <script src="js/main.js?v=202610032148"></script>
+  <script src="js/releases.js?v=202610061852"></script>
+  <script src="js/main.js?v=202610061852"></script>
 </body>
 </html>

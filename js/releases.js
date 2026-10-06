@@ -16,13 +16,21 @@ window.SOFTWARE = {
     "repo": "../Panda",
     "version_file": "src/app/metadata.py",
     "latest": {
-      "version": "1.0.65",
-      "date": "2026-09-29",
-      "file": "https://code.ill.fr/api/v4/projects/1699/packages/generic/panda/1.0.65/PANDA_v1.0.65_Windows_x64.zip",
-      "size": "177 MB",
-      "manual": "downloads/PANDA_User_Manual_v1.0.65.pdf"
+      "version": "1.0.66",
+      "date": "2026-10-06",
+      "file": "https://code.ill.fr/api/v4/projects/1699/packages/generic/panda/1.0.66/PANDA_v1.0.66_Windows_x64.zip",
+      "size": "169 MB",
+      "manual": "downloads/PANDA_User_Manual_v1.0.66.pdf"
     },
     "releases": [
+      {
+        "version": "1.0.66",
+        "date": "2026-10-06",
+        "commit": "0c94474",
+        "notes": [
+          {"type": "fixed", "text": "D20: scans stopped before the end no longer include unmeasured steps. Previously the zero-filled steps at the end of the file (2θ=0, monitor=0) diluted the pattern and, with binning, produced an even/odd bin zigzag."}
+        ]
+      },
       {
         "version": "1.0.65",
         "date": "2026-09-29",
@@ -158,13 +166,24 @@ window.SOFTWARE = {
     "repo": "../Edit_PyCR",
     "version_file": "src/edit_pycr/core/app_version.py",
     "latest": {
-      "version": "0.4.1",
-      "date": "2026-10-03",
-      "file": "https://code.ill.fr/api/v4/projects/1699/packages/generic/editpycr/0.4.1/Edit_PyCR_v0.4.1_Windows_x64.zip",
+      "version": "0.5.1",
+      "date": "2026-10-06",
+      "file": "https://code.ill.fr/api/v4/projects/1699/packages/generic/editpycr/0.5.1/Edit_PyCR_v0.5.1_Windows_x64.zip",
       "size": "69 MB",
-      "manual": "downloads/Edit_PyCR_User_Manual_v0.4.1.pdf"
+      "manual": "downloads/Edit_PyCR_User_Manual_v0.5.1.pdf"
     },
     "releases": [
+      {
+        "version": "0.5.1",
+        "date": "2026-10-06",
+        "commit": "6e24c94",
+        "notes": [
+          {"type": "new", "text": "The Strategy window now has a scope and kind picker that adds a whole kind of parameter to a step at once, such as all the positions of a phase or every scale. It also offers three preset orders of refinement and a “Remove strategy” button that turns strategy mode off."},
+          {"type": "fixed", "text": "Atom codes in the standard <code>!Atom Typ  X  Y  Z  Biso  Occ</code> header are now read correctly, so the X/Y/Z/Biso/Occ codes no longer fall back to the bare atom name in links."},
+          {"type": "fixed", "text": "Saving a <code>.pcr</code> no longer rewrites an excluded-regions row whose values you did not change; a hand-typed row keeps its own spacing."},
+          {"type": "fixed", "text": "The search hint in the template picker is now readable in the dark theme."}
+        ]
+      },
       {
         "version": "0.4.1",
         "date": "2026-10-03",
