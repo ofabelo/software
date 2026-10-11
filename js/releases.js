@@ -170,13 +170,22 @@ window.SOFTWARE = {
     "repo": "../Edit_PyCR",
     "version_file": "src/edit_pycr/core/app_version.py",
     "latest": {
-      "version": "0.5.2",
+      "version": "0.5.3",
       "date": "2026-10-11",
-      "file": "https://code.ill.fr/api/v4/projects/1699/packages/generic/editpycr/0.5.2/Edit_PyCR_v0.5.2_Windows_x64.zip",
+      "file": "https://code.ill.fr/api/v4/projects/1699/packages/generic/editpycr/0.5.3/Edit_PyCR_v0.5.3_Windows_x64.zip",
       "size": "69 MB",
-      "manual": "downloads/Edit_PyCR_User_Manual_v0.5.2.pdf"
+      "manual": "downloads/Edit_PyCR_User_Manual_v0.5.3.pdf"
     },
     "releases": [
+      {
+        "version": "0.5.3",
+        "date": "2026-10-11",
+        "commit": "2156076",
+        "notes": [
+          {"type": "fixed", "text": "Powder to single crystal calculation (Cry=4): the plotting range line (<code>2Th1/TOF1 2Th2/TOF2 Pattern to plot</code>) is now placed after the \"Parameters for Single X-tal calculations\" trailer when the source file has one, so FullProf no longer stops with an error. If the file has no trailer, no range is invented."},
+          {"type": "improved", "text": "mCIF to PCR conversion: an atom whose moment is written 0 0 0 now gets random starting values only for the components its <code>_atom_site_moment.symmform</code> rule allows (for example mx,0,mz or mx,-mx,0), instead of random values in all three. Atoms with no rule, or a rule that cannot be read, behave as before, and moments given in the mCIF are left untouched."}
+        ]
+      },
       {
         "version": "0.5.2",
         "date": "2026-10-11",
