@@ -170,13 +170,30 @@ window.SOFTWARE = {
     "repo": "../Edit_PyCR",
     "version_file": "src/edit_pycr/core/app_version.py",
     "latest": {
-      "version": "0.5.1",
-      "date": "2026-10-06",
-      "file": "https://code.ill.fr/api/v4/projects/1699/packages/generic/editpycr/0.5.1/Edit_PyCR_v0.5.1_Windows_x64.zip",
+      "version": "0.5.2",
+      "date": "2026-10-11",
+      "file": "https://code.ill.fr/api/v4/projects/1699/packages/generic/editpycr/0.5.2/Edit_PyCR_v0.5.2_Windows_x64.zip",
       "size": "69 MB",
-      "manual": "downloads/Edit_PyCR_User_Manual_v0.5.1.pdf"
+      "manual": "downloads/Edit_PyCR_User_Manual_v0.5.2.pdf"
     },
     "releases": [
+      {
+        "version": "0.5.2",
+        "date": "2026-10-11",
+        "commit": "1638191",
+        "notes": [
+          {"type": "new", "text": "Help > About now tells you whether this version is the latest, a newer one is available (with a link to the download page), or the check could not be made."},
+          {"type": "new", "text": "The Strategy window has new kinds of parameter: single-crystal scales (Sc1..Sc6), extinction (Ext1..Ext7), symmetry-mode amplitudes (including magnetic ones), the propagation vector and the absorption correction. A new “Symmetry modes” preset follows the order used in the FullProf tutorials."},
+          {"type": "improved", "text": "Symmetry-mode amplitudes in ISODISTORT files are now recognised as parameters, including rows with a trailing comment, the A<n>_<irrep> names and the headers ISODISTORT writes."},
+          {"type": "fixed", "text": "Phases with mode blocks (Jbt=±6) are now handled as a whole: Fix all codes reaches the amplitudes and profile block, Delete phase removes them, Duplicate phase copies them, and moving a phase no longer hands its modes to the neighbouring phase. Converting such a phase to single crystal is refused with a message."},
+          {"type": "fixed", "text": "The codeword of the Lorentzian strain row (<code>XI</code>, on the same line as its value) is now read, so it is coloured, can be constrained and is renumbered. The row is named “XI (Lorentzian strain)”."},
+          {"type": "improved", "text": "The refining window gives the fit plot most of the space, and the pattern plot no longer stays half empty after the pane is resized."},
+          {"type": "improved", "text": "The history chart now shows at most 15 states at a time, which you walk with side arrows or the mouse wheel, with a counter such as “21-35 / 35”. The controls under the chart are on one compact row."},
+          {"type": "fixed", "text": "Some tabs of the history dock were missing until the window was resized; they now appear as soon as they become visible."},
+          {"type": "improved", "text": "The Strategy window no longer offers the In/Fin/N_t/Spc columns of the atom line as refinable parameters, since FullProf has no codewords for them. Jbt=10 moment rows are named after the Rx..Iz header and their atom, such as “Ry (Cu)”."},
+          {"type": "improved", "text": "The history chart no longer draws Chi2 per pattern a second time when there is only one pattern."}
+        ]
+      },
       {
         "version": "0.5.1",
         "date": "2026-10-06",
