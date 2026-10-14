@@ -23,15 +23,16 @@ window.SOFTWARE = {
       "version": "1.0.67",
       "date": "2026-10-14",
       "file": "https://code.ill.fr/api/v4/projects/1699/packages/generic/panda/1.0.67/PANDA_v1.0.67_Windows_x64.zip",
-      "size": "169 MB",
+      "size": "172 MB",
       "manual": "downloads/PANDA_User_Manual_v1.0.67.pdf"
     },
     "releases": [
       {
         "version": "1.0.67",
         "date": "2026-10-14",
-        "commit": "6a10bc2",
+        "commit": "511dd33",
         "notes": [
+          {"type": "fixed", "text": "Exporting plots to <code>SVG</code>, <code>PDF</code> and <code>EPS</code> (and PostScript) now works in the installed Windows and Linux versions; the export failed there before."},
           {"type": "improved", "text": "Maintenance release."}
         ]
       },
