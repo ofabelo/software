@@ -170,13 +170,23 @@ window.SOFTWARE = {
     "repo": "../Edit_PyCR",
     "version_file": "src/edit_pycr/core/app_version.py",
     "latest": {
-      "version": "0.5.3",
-      "date": "2026-10-11",
-      "file": "https://code.ill.fr/api/v4/projects/1699/packages/generic/editpycr/0.5.3/Edit_PyCR_v0.5.3_Windows_x64.zip",
+      "version": "0.5.4",
+      "date": "2026-10-14",
+      "file": "https://code.ill.fr/api/v4/projects/1699/packages/generic/editpycr/0.5.4/Edit_PyCR_v0.5.4_Windows_x64.zip",
       "size": "69 MB",
-      "manual": "downloads/Edit_PyCR_User_Manual_v0.5.3.pdf"
+      "manual": "downloads/Edit_PyCR_User_Manual_v0.5.4.pdf"
     },
     "releases": [
+      {
+        "version": "0.5.4",
+        "date": "2026-10-14",
+        "commit": "1a878f5",
+        "notes": [
+          {"type": "new", "text": "Special reflections (hkl-dependent broadening and shift) can now be viewed and edited: the structure tree shows a \"Special reflections (N)\" node under each phase listing what every reflection refines, and an editing dialog offers Refine boxes, a warning when <code>Nsp_Ref</code> does not match, and removal. Both classic and multi-pattern PCR files are supported."},
+          {"type": "new", "text": "Right-clicking a Bragg tick in the pattern plot offers \"Add special reflection\" and opens the dialog on that reflection; a right-click elsewhere still resets the view. Adding the first special reflection to a phase with <code>More=0</code> sets <code>More=1</code> and writes the optional row."},
+          {"type": "improved", "text": "Special reflections are now flagged when <code>Del_U</code>/<code>Del_Y</code> are refined together with <code>D-HG^2</code>/<code>D-HL</code>."}
+        ]
+      },
       {
         "version": "0.5.3",
         "date": "2026-10-11",
