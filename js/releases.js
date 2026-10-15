@@ -20,13 +20,21 @@ window.SOFTWARE = {
     "repo": "../Panda",
     "version_file": "src/app/metadata.py",
     "latest": {
-      "version": "1.0.67",
-      "date": "2026-10-14",
-      "file": "https://code.ill.fr/api/v4/projects/1699/packages/generic/panda/1.0.67/PANDA_v1.0.67_Windows_x64.zip",
-      "size": "172 MB",
-      "manual": "downloads/PANDA_User_Manual_v1.0.67.pdf"
+      "version": "1.0.68",
+      "date": "2026-10-15",
+      "file": "https://code.ill.fr/api/v4/projects/1699/packages/generic/panda/1.0.68/PANDA_v1.0.68_Windows_x64.zip",
+      "size": "170 MB",
+      "manual": "downloads/PANDA_User_Manual_v1.0.68.pdf"
     },
     "releases": [
+      {
+        "version": "1.0.68",
+        "date": "2026-10-15",
+        "commit": "8c3b1cb",
+        "notes": [
+          {"type": "improved", "text": "Maintenance release."}
+        ]
+      },
       {
         "version": "1.0.67",
         "date": "2026-10-14",
