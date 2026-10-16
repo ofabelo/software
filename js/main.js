@@ -124,6 +124,14 @@
     fields(box, "size").forEach((el) => { el.textContent = L.size; });
     fields(box, "file").forEach((el) => el.setAttribute("href", L.file));
     fields(box, "manual").forEach((el) => el.setAttribute("href", L.manual));
+    // Linux / macOS packages: shown only when this version has them
+    box.querySelectorAll("[data-os]").forEach((el) => {
+      const pkg = L[el.dataset.os];
+      el.hidden = !pkg;
+      if (!pkg) return;
+      el.setAttribute("href", pkg.file);
+      el.querySelectorAll("[data-field=size]").forEach((s) => { s.textContent = pkg.size; });
+    });
   });
 
   const announce = document.getElementById("announce-text");

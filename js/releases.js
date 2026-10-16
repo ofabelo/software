@@ -13,6 +13,8 @@
 // Note types: "new", "improved", "fixed".
 // "commit" is the commit each zip was built from: the notes of a release
 // describe exactly what is inside its zip.
+// "linux" / "macos" in "latest" (optional) are the Linux and macOS packages of
+// that same version, built by CI; without them the page shows Windows only.
 
 window.SOFTWARE = {
   "panda": {
@@ -24,7 +26,15 @@ window.SOFTWARE = {
       "date": "2026-10-15",
       "file": "https://code.ill.fr/api/v4/projects/1699/packages/generic/panda/1.0.68/PANDA_v1.0.68_Windows_x64.zip",
       "size": "170 MB",
-      "manual": "downloads/PANDA_User_Manual_v1.0.68.pdf"
+      "manual": "downloads/PANDA_User_Manual_v1.0.68.pdf",
+      "linux": {
+        "file": "https://code.ill.fr/api/v4/projects/1699/packages/generic/panda/1.0.68/panda-1.0.68-linux-x64.tar.gz",
+        "size": "281 MB"
+      },
+      "macos": {
+        "file": "https://code.ill.fr/api/v4/projects/1699/packages/generic/panda/1.0.68/panda-1.0.68-macos-arm64.tar.gz",
+        "size": "136 MB"
+      }
     },
     "releases": [
       {

@@ -373,6 +373,24 @@ h2 .pill { font-size: .9rem; }
 .dl__actions { display: grid; gap: 10px; }
 .dl__note { font-size: .85rem; color: var(--muted); margin: 16px 0 0; }
 @media (max-width: 860px) { .dl-grid { grid-template-columns: 1fr; } }
+.dl__os { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.dl__os [hidden] { display: none; }
+.dl__os .btn { flex-direction: column; gap: 0; line-height: 1.25; padding-top: 9px; padding-bottom: 9px; }
+.dl__os small { font-size: .74rem; font-weight: 500; color: var(--muted); }
+.compat { background: #fff; border: 1px solid var(--line); border-radius: 14px; box-shadow: var(--shadow); padding: 28px; margin-bottom: 32px; }
+.compat h3 { font-size: 1.35rem; margin: 0 0 6px; }
+.compat > p { color: var(--muted); margin: 0 0 20px; }
+.compat__grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
+.compat__os h4 { margin: 0 0 4px; font-size: 1.05rem; color: var(--navy); }
+.compat__file { font-family: var(--mono); font-size: .78rem; color: var(--muted); margin: 0 0 12px; overflow-wrap: anywhere; }
+.compat__os ul { margin: 0 0 12px; padding-left: 0; list-style: none; font-size: .9rem; }
+.compat__os li { padding-left: 1.4em; position: relative; margin-bottom: 4px; }
+.compat__os li::before { position: absolute; left: 0; font-weight: 700; }
+.compat__os li.ok::before { content: "✓"; color: #1f8a4c; }
+.compat__os li.no::before { content: "✗"; color: #b3261e; }
+.compat__os p { font-size: .86rem; margin: 0 0 8px; }
+.compat__os pre { background: var(--tint); border: 1px solid var(--line); border-radius: 8px; padding: 8px 10px; font-size: .78rem; overflow-x: auto; margin: 0 0 8px; white-space: pre-wrap; overflow-wrap: anywhere; }
+@media (max-width: 960px) { .compat__grid { grid-template-columns: 1fr; } }
 
 /* ---------- Release notes ---------- */
 .news { background: #fff; border: 1px solid var(--line); border-radius: 14px; box-shadow: var(--shadow); padding: 28px; scroll-margin-top: 80px; }

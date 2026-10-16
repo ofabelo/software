@@ -7,7 +7,7 @@
   <meta name="description" content="Free desktop tools for neutron diffraction users: PANDA for browsing, reducing and exporting powder data, and Edit_PyCR for building and running FullProf refinements.">
   <meta name="author" content="Oscar Fabelo">
   <link rel="icon" type="image/png" href="img/panda-icon.png">
-  <link rel="stylesheet" href="css/style.css?v=202610151839">
+  <link rel="stylesheet" href="css/style.css?v=202610162245">
 </head>
 <body>
 
@@ -69,12 +69,12 @@
           <div class="hero__cta">
             <a class="btn btn--primary" href="#download">
               <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11m0 0-4-4m4 4 4-4M5 20h14"/></svg>
-              Download for Windows
+              Download
             </a>
             <a class="btn btn--ghost" href="#workflow">How they fit together</a>
           </div>
           <ul class="hero__facts">
-            <li>Windows 64-bit</li>
+            <li>Windows 64-bit · PANDA also for Linux and macOS</li>
             <li>No installation, no admin rights</li>
             <li>User manual included</li>
           </ul>
@@ -480,15 +480,16 @@
             <p class="kicker">Download</p>
             <h2>Get the latest version</h2>
             <p class="section__intro">
-              Both programs are free and ship as a self-contained folder for Windows 64-bit.
+              Both programs are free and ship as a self-contained folder for Windows 64-bit;
+              PANDA is also available for Linux and macOS (see <a href="#which-file">which file to choose</a>).
               This page always links to the <strong>latest release</strong>. The user manual is
               included in the program (Help › About) and can also be downloaded below.
             </p>
           </div>
           <ol class="steps" aria-label="How to install">
-            <li><strong>Download</strong> the zip</li>
-            <li><strong>Unzip</strong> it anywhere, with no installation and no admin rights</li>
-            <li><strong>Run</strong> <code>PANDA.exe</code> or <code>FullProf_Editor.exe</code></li>
+            <li><strong>Download</strong> the zip (or the <code>.tar.gz</code> for Linux / macOS)</li>
+            <li><strong>Unpack</strong> it anywhere, with no installation and no admin rights</li>
+            <li><strong>Run</strong> <code>PANDA.exe</code> or <code>FullProf_Editor.exe</code> (<code>PANDA</code> / <code>PANDA.app</code> on Linux / macOS)</li>
           </ol>
         </div>
 
@@ -504,14 +505,22 @@
             <dl class="meta">
               <div><dt>Released</dt><dd data-field="date">29 Sep 2026</dd></div>
               <div><dt>Size</dt><dd data-field="size">177 MB</dd></div>
-              <div><dt>Platform</dt><dd>Windows 64-bit</dd></div>
+              <div><dt>Platform</dt><dd>Windows · Linux · macOS</dd></div>
               <div><dt>Licence</dt><dd>GPL-3.0</dd></div>
             </dl>
             <div class="dl__actions">
               <a class="btn btn--primary btn--block" data-field="file" href="https://code.ill.fr/api/v4/projects/1699/packages/generic/panda/1.0.65/PANDA_v1.0.65_Windows_x64.zip" download>
                 <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11m0 0-4-4m4 4 4-4M5 20h14"/></svg>
-                <span>Download <span data-field="version">v1.0.65</span></span>
+                <span>Download <span data-field="version">v1.0.65</span> for Windows</span>
               </a>
+              <div class="dl__os">
+                <a class="btn btn--ghost" data-os="linux" href="https://code.ill.fr/api/v4/projects/1699/packages/generic/panda/1.0.68/panda-1.0.68-linux-x64.tar.gz" download>
+                  <span>Linux x64</span><small data-field="size">281 MB</small>
+                </a>
+                <a class="btn btn--ghost" data-os="macos" href="https://code.ill.fr/api/v4/projects/1699/packages/generic/panda/1.0.68/panda-1.0.68-macos-arm64.tar.gz" download>
+                  <span>macOS Apple Silicon</span><small data-field="size">136 MB</small>
+                </a>
+              </div>
               <a class="btn btn--ghost btn--block" data-field="manual" href="downloads/PANDA_User_Manual_v1.0.65.pdf" target="_blank">User manual (PDF)</a>
             </div>
           </article>
@@ -539,6 +548,49 @@
             </div>
             <p class="dl__note">Edit_PyCR calls FullProf's own programs. If they are not on the system PATH, use <em>PCR › Locate FullProf installation…</em></p>
           </article>
+        </div>
+
+        <!-- Which PANDA file for which system -->
+        <div class="compat" id="which-file">
+          <h3>Which PANDA file for my system?</h3>
+          <p>Each package only runs on the system it was built for. Edit_PyCR is Windows only for now.</p>
+          <div class="compat__grid">
+            <div class="compat__os">
+              <h4>Windows</h4>
+              <p class="compat__file">PANDA_v…_Windows_x64.zip</p>
+              <ul>
+                <li class="ok">Windows 10 and 11, 64-bit (x64)</li>
+              </ul>
+              <p>Unzip and run <code>PANDA.exe</code>.</p>
+            </div>
+            <div class="compat__os">
+              <h4>Linux</h4>
+              <p class="compat__file">panda-…-linux-x64.tar.gz</p>
+              <ul>
+                <li class="ok">Ubuntu 22.04, 24.04 and later</li>
+                <li class="ok">Debian 12 and 13</li>
+                <li class="ok">RHEL / Rocky / Alma 10</li>
+                <li class="ok">Fedora 36+, Linux Mint 21+, openSUSE Tumbleweed</li>
+                <li class="no">Ubuntu 20.04, Debian 11 (glibc 2.31)</li>
+                <li class="no">RHEL / Rocky / Alma 8 and 9, CentOS 7</li>
+                <li class="no">Linux on ARM (aarch64, e.g. Raspberry Pi)</li>
+              </ul>
+              <pre>tar xzf panda-*-linux-x64.tar.gz
+./panda-*-linux-x64/PANDA</pre>
+              <p>OpenGL comes from the system, not from the package. A normal desktop already has it; a minimal installation may need:</p>
+              <pre>sudo apt install libgl1 libegl1 libxkbcommon-x11-0 libxcb-cursor0</pre>
+            </div>
+            <div class="compat__os">
+              <h4>macOS</h4>
+              <p class="compat__file">panda-…-macos-arm64.tar.gz</p>
+              <ul>
+                <li class="ok">Macs with Apple Silicon (M1, M2, M3, M4…)</li>
+                <li class="no">Intel Macs</li>
+              </ul>
+              <p>Unpack it (double-click) and open <code>PANDA.app</code>. The app is not notarized by Apple, so the first time macOS may refuse to open it: allow it in <em>System Settings › Privacy &amp; Security › Open Anyway</em>, or run:</p>
+              <pre>xattr -dr com.apple.quarantine PANDA.app</pre>
+            </div>
+          </div>
         </div>
 
         <!-- Release notes -->
@@ -602,7 +654,7 @@
     <p class="lightbox__caption"></p>
   </dialog>
 
-  <script src="js/releases.js?v=202610151839"></script>
-  <script src="js/main.js?v=202610151839"></script>
+  <script src="js/releases.js?v=202610162245"></script>
+  <script src="js/main.js?v=202610162245"></script>
 </body>
 </html>

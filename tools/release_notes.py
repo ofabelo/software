@@ -319,8 +319,12 @@ def add_release(sw, repo, version, notes, file, manual, date=None):
     head = git(repo, "rev-parse", "--short", "HEAD").strip()
     sw["releases"] = [r for r in sw["releases"] if r["version"] != version]
     sw["releases"].insert(0, {"version": version, "date": date, "commit": head, "notes": notes})
+    old = sw.get("latest", {})
     sw["latest"] = {"version": version, "date": date, "file": file,
                     "size": file_size(WEB / file), "manual": manual}
+    # the Linux / macOS packages stay on the page only while they are the same version
+    if old.get("version") == version:
+        sw["latest"].update({k: old[k] for k in ("linux", "macos") if k in old})
 
 
 def save(header, data):
